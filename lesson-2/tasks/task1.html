@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html5 lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Task 1</title>
+  </head>
+  <body>
+    <h1>Task 1</h1>
+    <p lang="uk">
+      Знайти суму, добуток та частку двох дійсних чисел. Результат вивести у
+      формі таблиці
+    </p>
+    <script>
+      let firstNumber = parseFloat(
+        prompt("Введіть, будь ласка, перше число", 1)
+      );
+      let secondNumber = parseFloat(
+        prompt("Введіть, будь ласка, друге число", 1)
+      );
+
+      let operAddition = firstNumber + secondNumber;
+      let operMultiplication = firstNumber * secondNumber;
+      let operDivison = firstNumber / secondNumber;
+
+      document.write(`<style>
+    .row-even {
+        background-color: #f2f2f2;
+    }
+     </style>`);
+
+      document.write(`<table style="border-collapse: collapse; text-align: center">
+        <tr class="row-even">
+            <th style="border: 1px solid black; padding: 8px">Operation</th>
+            <th style="border: 1px solid black; padding: 8px">Result</th>
+        </tr>
+        <tr class="row-add"> 
+            <td style="border: 1px solid black; padding: 8px">Addition</td>
+            <td style="border: 1px solid black; padding: 8px">${operAddition}</td>
+        </tr>
+        <tr class="row-even"> 
+            <td style="border: 1px solid black; padding: 8px">Multiplication</td>
+            <td style="border: 1px solid black; padding: 8px">${operMultiplication}</td>
+        </tr>
+        <tr> 
+            <td style="border: 1px solid black; padding: 8px">Division</td>
+            <td style="border: 1px solid black; padding: 8px">${operDivison.toFixed(2)}</td>
+        </tr>
+</table>`);
+    </script>
+  </body>
+</html5
+

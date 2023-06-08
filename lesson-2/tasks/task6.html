@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Task 6</title>
+  </head>
+  <body>
+    <h1>Task 6</h1>
+    <p lang="uk">
+      З клавіатури вводяться вартість товару та кількість одиниць 3 товарів.
+      Обчислити вартість кожного товару окремо та загальну вартість. Вивести чек
+      (як у супермаркеті) використовуючи елементи розмітки.
+    </p>
+    <script>
+      let priceProductFirst = parseFloat(
+        prompt("Введіть, будь ласка, вартість першого товару", 10)
+      );
+      let quantityProductFirst = parseFloat(
+        prompt("Введіть, будь ласка, кількість першого товару", 1)
+      );
+      let priceProductSecond = parseFloat(
+        prompt("Введіть, будь ласка, вартість другого товару", 10)
+      );
+      let quantityProductSecond = parseFloat(
+        prompt("Введіть, будь ласка, кількість другого товару", 1)
+      );
+      let priceProductThird = parseFloat(
+        prompt("Введіть, будь ласка, вартість третього товару", 10)
+      );
+      let quantityProductThird = parseFloat(
+        prompt("Введіть, будь ласка, кількість третього товару", 1)
+      );
+
+      let totalPriceFirstProduct = priceProductFirst * quantityProductFirst;
+      let totalPriceSecondProduct = priceProductSecond * quantityProductSecond;
+      let totalPriceThirdProduct = priceProductThird * quantityProductThird;
+
+      let totalPrice =
+        totalPriceFirstProduct +
+        totalPriceSecondProduct +
+        totalPriceThirdProduct;
+
+    document.write(`
+    <table style="border-collapse: collapse; margin: 0 auto">
+        <tr>
+          <th style="border: 1px solid black; padding: 8px; text-align: left; background-color: lightgray;">Name of the product</th>  
+          <th style="border: 1px solid black; padding: 8px; text-align: left; background-color: lightgray;">Price of the product</th>
+          <th style="border: 1px solid black; padding: 8px; text-align: left; background-color: lightgray;">Quantity of the product</th>
+          <th style="border: 1px solid black; padding: 8px; text-align: left; background-color: lightgray;">Total price of the product</th>  
+       </tr>
+       <tr style="text-align:center">
+        <td style="border: 1px solid black; padding: 8px;">First product</td>
+        <td style="border: 1px solid black; padding: 8px;">${priceProductFirst}</td>
+        <td style="border: 1px solid black; padding: 8px;">${quantityProductFirst}</td> 
+        <td style="border: 1px solid black; padding: 8px;">${totalPriceFirstProduct}</td>
+        </tr>
+         <tr style="text-align:center">
+        <td style="border: 1px solid black; padding: 8px;">Second product</td>
+        <td style="border: 1px solid black; padding: 8px;">${priceProductSecond}</td>
+        <td style="border: 1px solid black; padding: 8px;">${quantityProductSecond}</td> 
+        <td style="border: 1px solid black; padding: 8px;">${totalPriceSecondProduct}</td>
+        </tr>
+         <tr style="text-align:center">
+        <td style="border: 1px solid black; padding: 8px;">Third product</td>
+        <td style="border: 1px solid black; padding: 8px;">${priceProductThird}</td>
+        <td style="border: 1px solid black; padding: 8px;">${quantityProductThird}</td> 
+        <td style="border: 1px solid black; padding: 8px;">${totalPriceThirdProduct}</td>
+        </tr>
+        <tr style="text-align:center">
+        <th colspan="3" style="border: 1px solid black; padding: 8px; background-color: lightgray;">Total price</th>
+        <td style="border: 1px solid black; padding: 8px;">${totalPrice}</td>
+        </tr>
+        </table`);
+</script>
+
+    </script>
+  </body>
+</html>
