@@ -19,21 +19,19 @@
       let randomNumber =
         minNumber + Math.floor(Math.random() * (maxNumber - minNumber + 1));
 
-      let firstTry = parseInt(
+      let attempt = parseInt(
         prompt(
           "Вітаю на грі. Маєте дві спроби вгадати число від 1 до 5 включно. Ваша перша спроба",
           1
         )
       );
 
-      if (randomNumber === firstTry) {
+      if (randomNumber === attempt) {
         alert("Вітаю, перемога!!!!!Ви вгадали.");
       } else {
-        let secondTry = parseInt(
-          prompt("Спробуйте ще раз,Ваша друга спроба", 2)
-        );
+        attempt = parseInt(prompt("Спробуйте ще раз,Ваша друга спроба", 2));
 
-        if (randomNumber === secondTry) {
+        if (randomNumber === attempt) {
           alert("Вітаю, перемога!!!!!Ви вгадали.");
         } else {
           alert(`На жаль, сьогодні не Ваш день, число будо ${randomNumber}`);
