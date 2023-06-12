@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Task 4</title>
+  </head>
+  <body>
+    <h1>Task 4</h1>
+    <p>
+      З клавіатури вводиться вік людини. Вивести на екран ким він є (дитиною у
+      садочку, школярем, студентом, працівником, пенсіонером).
+    </p>
+    <script>
+      let ageUser = parseInt(prompt("Введіть, будь ласка, Ваш вік", 25));
+      const ageMinChildKindergarten = 3;
+      const ageMinSchoolBoy = 6;
+      const ageMinStudent = 16;
+      const ageMinWorker = 23;
+      const ageMinPensioner = 55;
+
+      switch (true) {
+        case ageUser > 0 && ageUser < ageMinChildKindergarten:
+          alert("Ви готуєтесь до садочку");
+          break;
+
+        case ageUser < ageMinSchoolBoy:
+          alert("Ви дитина у садочку");
+          break;
+
+        case ageUser < ageMinStudent:
+          alert("Ви школяр");
+          break;
+
+        case ageUser < ageMinWorker:
+          alert("Ви студент");
+          break;
+
+        case ageUser < ageMinPensioner:
+          alert("Ви працівник");
+          break;
+
+        default:
+          alert("Ви пенсіонер");
+          break;
+      }
+
+      //   if (ageUser > 0 && ageUser < ageMinChildKindergarten)
+      //     alert("Ви готуєтесь до садочку");
+      //   else if (ageUser >= ageMinChildKindergarten && ageUser < ageMinSchoolBoy)
+      //     alert("Ви дитина у садочку");
+      //   else if (ageUser >= ageMinSchoolBoy && ageUser < ageMinStudent)
+      //     alert("Ви школяр");
+      //   else if (ageUser >= ageMinStudent && ageUser < ageMinWorker)
+      //     alert("Ви студент");
+      //   else if (ageUser >= ageMinWorker && ageUser < ageMinPensioner)
+      //     alert("Ви працівник");
+      //   else alert("Ви пенсіонер");
+    </script>
+  </body>
+</html>

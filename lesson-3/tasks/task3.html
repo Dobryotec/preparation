@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Task 3</title>
+  </head>
+  <body>
+    <h1>Task 3</h1>
+    <p>
+      Випадковим чином генерується число від 1 до 5. Спробуйте вгадати число за
+      2 спроби.
+    </p>
+    <script>
+      const minNumber = 1;
+      const maxNumber = 5;
+
+      let randomNumber =
+        minNumber + Math.floor(Math.random() * (maxNumber - minNumber + 1));
+
+      let firstTry = parseInt(
+        prompt(
+          "Вітаю на грі. Маєте дві спроби вгадати число від 1 до 5 включно. Ваша перша спроба",
+          1
+        )
+      );
+
+      if (randomNumber === firstTry) {
+        alert("Вітаю, перемога!!!!!Ви вгадали.");
+      } else {
+        let secondTry = parseInt(
+          prompt("Спробуйте ще раз,Ваша друга спроба", 2)
+        );
+
+        if (randomNumber === secondTry) {
+          alert("Вітаю, перемога!!!!!Ви вгадали.");
+        } else {
+          alert(`На жаль, сьогодні не Ваш день, число будо ${randomNumber}`);
+        }
+      }
+    </script>
+  </body>
+</html>

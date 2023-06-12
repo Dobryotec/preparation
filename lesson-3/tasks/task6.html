@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Task 6</title>
+  </head>
+  <body>
+    <h1>Task 6</h1>
+    <p>З клавіатури вводиться номер дня тижня. Вивести на екран назву дня.</p>
+    <script>
+      let numberDayOfWeek = parseInt(
+        prompt("Please enter the number of the day of the week", 1)
+      );
+
+      switch (numberDayOfWeek) {
+        case 1:
+          alert("Monday");
+          break;
+
+        case 2:
+          alert("Thuesday");
+          break;
+
+        case 3:
+          alert("Wednesday");
+          break;
+
+        case 4:
+          alert("Thursday");
+          break;
+
+        case 5:
+          alert("Friday");
+          break;
+
+        case 6:
+          alert("Saturday");
+          break;
+
+        case 7:
+          alert("Sunday");
+          break;
+
+        default:
+          alert("There is no such day of the week");
+          break;
+      }
+    </script>
+  </body>
+</html>

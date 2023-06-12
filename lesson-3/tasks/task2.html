@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Task 2</title>
+  </head>
+  <body>
+    <h1>Task 2</h1>
+    <p>
+      З клавіатури вводиться ціна товару і кількість грошей. Якщо грошей не
+      вистачає то відмовляємо у покупці, інакше, якщо ще залишаються гроші, то
+      пропонуємо купити лотерею за 4 грн.
+    </p>
+    <script>
+      const priceLottery = 4;
+      let priceProduct = parseFloat(
+        prompt("Введіть, будь ласка, ціну товару", 10)
+      );
+      let totalMoney = parseFloat(
+        prompt("Введіть, будь ласка, скільки Ви маєте грошей", 20)
+      );
+
+      let balanceOfThePurchase = totalMoney - priceProduct;
+
+      if (totalMoney < priceProduct) alert("Вибачте, не вистачає грошей");
+      else if (balanceOfThePurchase >= 0 && balanceOfThePurchase <= 3)
+        alert("Дякую за купівлю");
+      else if (
+        totalMoney > priceProduct &&
+        balanceOfThePurchase >= priceLottery
+      )
+        alert(
+          `Дякую за купівлю,не бажаєте купити ще лотерею за ${priceLottery}грн?`
+        );
+    </script>
+  </body>
+</html>
