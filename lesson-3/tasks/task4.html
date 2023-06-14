@@ -18,45 +18,41 @@
       const ageMinSchoolBoy = 6;
       const ageMinStudent = 16;
       const ageMinWorker = 23;
-      const ageMinPensioner = 55;
+      const ageMinPensioner = 65;
 
-      switch (true) {
-        case ageUser > 0 && ageUser < ageMinChildKindergarten:
-          alert("Ви готуєтесь до садочку");
-          break;
+      if (ageUser > 0 && ageUser < ageMinChildKindergarten)
+        alert("Ви готуєтесь до садочку");
+      else if (ageUser < ageMinSchoolBoy) alert("Ви дитина у садочку");
+      else if (ageUser < ageMinStudent) alert("Ви школяр");
+      else if (ageUser < ageMinWorker) alert("Ви студент");
+      else if (ageUser < ageMinPensioner) alert("Ви працівник");
+      else alert("Ви пенсіонер");
 
-        case ageUser < ageMinSchoolBoy:
-          alert("Ви дитина у садочку");
-          break;
-
-        case ageUser < ageMinStudent:
-          alert("Ви школяр");
-          break;
-
-        case ageUser < ageMinWorker:
-          alert("Ви студент");
-          break;
-
-        case ageUser < ageMinPensioner:
-          alert("Ви працівник");
-          break;
-
-        default:
-          alert("Ви пенсіонер");
-          break;
-      }
-
-      //   if (ageUser > 0 && ageUser < ageMinChildKindergarten)
+      // switch (true) {
+      //   case ageUser > 0 && ageUser < ageMinChildKindergarten:
       //     alert("Ви готуєтесь до садочку");
-      //   else if (ageUser >= ageMinChildKindergarten && ageUser < ageMinSchoolBoy)
+      //     break;
+
+      //   case ageUser < ageMinSchoolBoy:
       //     alert("Ви дитина у садочку");
-      //   else if (ageUser >= ageMinSchoolBoy && ageUser < ageMinStudent)
+      //     break;
+
+      //   case ageUser < ageMinStudent:
       //     alert("Ви школяр");
-      //   else if (ageUser >= ageMinStudent && ageUser < ageMinWorker)
+      //     break;
+
+      //   case ageUser < ageMinWorker:
       //     alert("Ви студент");
-      //   else if (ageUser >= ageMinWorker && ageUser < ageMinPensioner)
+      //     break;
+
+      //   case ageUser < ageMinPensioner:
       //     alert("Ви працівник");
-      //   else alert("Ви пенсіонер");
+      //     break;
+
+      //   default:
+      //     alert("Ви пенсіонер");
+      //     break;
+      // }
     </script>
   </body>
 </html>
