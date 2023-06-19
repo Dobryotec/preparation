@@ -22,15 +22,10 @@
         prompt("Введіть, будь ласка, скільки Ви маєте грошей", 20)
       );
 
-      let balanceOfThePurchase = totalMoney - priceProduct;
-
       if (totalMoney < priceProduct) alert("Вибачте, не вистачає грошей");
-      else if (balanceOfThePurchase >= 0 && balanceOfThePurchase <= 3)
+      else if (totalMoney - priceProduct < priceLottery)
         alert("Дякую за купівлю");
-      else if (
-        totalMoney > priceProduct &&
-        balanceOfThePurchase >= priceLottery
-      )
+      else
         alert(
           `Дякую за купівлю,не бажаєте купити ще лотерею за ${priceLottery}грн?`
         );

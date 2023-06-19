@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Task 15</title>
+  </head>
+  <body>
+    <h1>Task 15</h1>
+    <p>
+      Ігровий автомат. Випадково вибираємо зображення у 3 позиціях. Вибір у
+      кожній позиції вибирається як одне з чотирьох зображень. Вивести ці
+      зображення і повідомити виграш користувача (три перших зображення 100 грн,
+      три других – 200, три третіх – 500, три четвертих зображення – 1000грн).
+      Використати цикли і switch (для вибору зображення за номером).
+    </p>
+    <script>
+      let total = 0;
+      let prevPicture;
+      let pictureFirst;
+
+      for (let i = 1; i <= 3; i++) {
+        const randomNumber = 1 + Math.floor(Math.random() * 4);
+        let picture;
+
+        switch (randomNumber) {
+          case 1:
+            picture = "&#127826;";
+            break;
+          case 2:
+            picture = "&#127816;";
+            break;
+          case 3:
+            picture = "&#127817;";
+            break;
+          case 4:
+            picture = "&#127820;";
+            break;
+        }
+
+        document.write(`${picture}`);
+
+        if (i === 1) {
+          pictureFirst = picture;
+        } else {
+          if (picture === pictureFirst && picture === prevPicture) {
+            switch (picture) {
+              case "&#127826;":
+                total += 100;
+                break;
+              case "&#127816;":
+                total += 200;
+                break;
+              case "&#127817;":
+                total += 500;
+                break;
+              case "&#127820;":
+                total += 1000;
+                break;
+            }
+          } else {
+            prevPicture = picture;
+          }
+        }
+      }
+
+      document.write(`<br> Ваш виграш: ${total} грн`);
+    </script>
+  </body>
+</html>

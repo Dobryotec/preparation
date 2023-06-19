@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Task 8</title>
+  </head>
+  <body>
+    <h1>Task 8</h1>
+    <p>Вивести таблицю</p>
+    <script>
+      const body = document.body;
+      const table = document.createElement("table");
+      table.style.cssText =
+        "border: 1px solid black; box-shadow: 0 0 10px rgba(0, 0, 0, 0.3); margin: 0 auto";
+      body.append(table);
+
+      for (let i = 0; i < 3; i++) {
+        const tr = document.createElement("tr");
+        table.append(tr);
+        if (!(i % 2)) {
+          tr.style.background = "gray";
+        }
+
+        for (let j = 0; j < 3; j++) {
+          const td = document.createElement("td");
+          td.style.cssText = "border: 1px solid black; padding: 8px;";
+          const number = i * 3 + j + 1;
+          td.textContent = number;
+          tr.append(td);
+        }
+      }
+    </script>
+  </body>
+</html>

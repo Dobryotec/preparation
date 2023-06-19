@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Task 12</title>
+  </head>
+  <body>
+    <h1>Task 12</h1>
+    <p>
+      Користувач загадує число. Комп’ютер задає питання поки не вгадає число
+      користувача (використати confirm).
+    </p>
+    <script>
+      for (let i = 0; ; i++) {
+        const randomNumber = 1 + Math.floor(Math.random() * 10);
+        let attempt = confirm(`Вaше число ${randomNumber}?`);
+        if (attempt) {
+          alert(`Перемога, я вгадав Ваше число ${randomNumber}`);
+          break;
+        }
+      }
+    </script>
+  </body>
+</html>

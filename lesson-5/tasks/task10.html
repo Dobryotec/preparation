@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Task 10</title>
+  </head>
+  <body>
+    <h1>Task 10</h1>
+    <p>Вивести на екран N абзаців (N вводиться користувачем) за зразком:</p>
+    <script>
+      const numberTitles = parseInt(
+        prompt("Введіть, будь ласка, кількість заголовків")
+      );
+      1;
+      const numberParagraphs = parseInt(
+        prompt("Введіть, будь ласка, кількість параграфів", 5)
+      );
+
+      const body = document.body;
+
+      for (let j = 1; j <= numberTitles; j++) {
+        const title = document.createElement("h2");
+        title.textContent = `Заголовок ${j} `;
+        body.append(title);
+
+        for (let i = 1; i <= numberParagraphs; i++) {
+          const p = document.createElement("p");
+          p.textContent = `Розділ ${j}, параграф ${i} `;
+          body.append(p);
+        }
+      }
+    </script>
+  </body>
+</html>

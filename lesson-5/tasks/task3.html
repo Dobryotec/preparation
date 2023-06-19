@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Task 3</title>
+  </head>
+  <body>
+    <h1>Task 3</h1>
+    <p>Вивести на екран 8 кнопок з написом “Hello”.</p>
+    <script>
+      const body = document.body;
+
+      for (let i = 0; i < 8; i++) {
+        const button = document.createElement("button");
+        button.textContent = "Hello";
+        body.append(button);
+        button.style.cssText =
+          "background-color: red; padding: 10px; border-radius: 10px; margin-left: 20px;font-weight: 700; font-size:25px; cursor:pointer ";
+        button.addEventListener("mouseover", function () {
+          button.style.backgroundColor = "yellow";
+        });
+
+        button.addEventListener("mouseout", function () {
+          button.style.backgroundColor = "red";
+        });
+      }
+    </script>
+  </body>
+</html>
