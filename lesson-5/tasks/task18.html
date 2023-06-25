@@ -18,7 +18,7 @@
 
       for (let i = 1; i <= weeks; i++) {
         let totalProfitWeek = 0;
-        for (j = 1; j <= 5; j++) {
+        for (let j = 1; j <= 5; j++) {
           const profit = parseFloat(
             prompt(
               `Введіть, будь ласка, Ваш прибуток за ${j} день ${i}-го тижня`,
@@ -30,7 +30,6 @@
         document.write(`Прибуток за ${i} тиждень = ${totalProfitWeek}<br>`);
         totalProfit += totalProfitWeek;
       }
-      document.write(`Загальний прибуток = ${totalProfit}`);
     </script>
   </body>
 </html>

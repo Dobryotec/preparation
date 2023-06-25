@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Task 1</title>
+  </head>
+  <body>
+    <h1>Task 1</h1>
+    <p>Вивести на екран A B C D E B C D E F C D E F G D E F G H E F G H I</p>
+    <script>
+      const numberRows = 5;
+      const numberColumns = 5;
+      const startLetterCode = 65;
+
+      for (let i = 0; i < numberRows; i++) {
+        let row = "";
+
+        for (let j = 0; j < numberColumns; j++) {
+          let charCode = startLetterCode + i + j;
+          let letter = String.fromCharCode(charCode);
+          row += letter + " ";
+        }
+        document.write(`${row}<br>`);
+      }
+    </script>
+  </body>
+</html>

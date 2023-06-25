@@ -22,9 +22,13 @@
       let count = 0;
       let total = 0;
 
-      for (let i = firstNumber; i <= secondNumber; i++) {
-        if (i % 2 && count < 5) {
-          count++;
+      for (
+        let i = firstNumber;
+        i <= secondNumber && countUnpairedNumbers < 5;
+        i++
+      ) {
+        if (i % 2) {
+          countUnpairedNumbers++;
           total += i;
         }
       }

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Task 10</title>
+  </head>
+  <body>
+    <h1>Task 10</h1>
+    <p>
+      Вивести на екран усі двоцифрові числа, у яких перша цифра є більшою або
+      рівною за другу.
+    </p>
+    <script>
+      for (let i = 10; i <= 99; i++) {
+        const firstDigit = Math.floor(i / 10);
+        const secondDigit = i % 10;
+
+        if (firstDigit >= secondDigit) {
+          document.write(`${i}<br>`);
+        }
+      }
+    </script>
+  </body>
+</html>

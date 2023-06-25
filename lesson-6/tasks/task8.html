@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Task 8</title>
+  </head>
+  <body>
+    <h1>Task 8</h1>
+    <p>
+      Вивести на екран послідовність символів а о а о а о а о а о … Всього
+      символів 82.
+    </p>
+    <script>
+      const charCodeLetterA = 97;
+      const charCodeLetterO = 111;
+      const letterA = String.fromCharCode(charCodeLetterA);
+      const letterO = String.fromCharCode(charCodeLetterO);
+      let row = "";
+
+      for (let i = 0; i < 41; i++) {
+        row += `${letterA}` + "\n" + `${letterO}` + "\n";
+      }
+      document.write(`${row}`);
+    </script>
+  </body>
+</html>
