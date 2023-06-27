@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Task 1</title>
+  </head>
+  <body>
+    <h1>Task 1</h1>
+    <p>
+      Створити функцію, яка за номером місяця повертає пору року, до якої
+      відноситься цей місяць.
+    </p>
+    <script>
+      const numberMonth = parseInt(prompt("Введіть, будь ласка, номер місяця"));
+      function getSeason(month) {
+        let result;
+        switch (month) {
+          case 12:
+          case 1:
+          case 2:
+            result = `${month} month of Winter`;
+            break;
+          case 3:
+          case 4:
+          case 5:
+            result = `${month} month of Spring`;
+            break;
+          case 6:
+          case 7:
+          case 8:
+            result = `${month} month of Summer`;
+            break;
+          case 9:
+          case 10:
+          case 11:
+            result = `${month} month of Autumn`;
+            break;
+
+          default:
+            alert("This month number doesn't exist");
+            break;
+        }
+        return result;
+      }
+      document.write(getSeason(numberMonth));
+    </script>
+  </body>
+</html>
