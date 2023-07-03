@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Task 7</title>
+  </head>
+  <body>
+    <h1>Task 7</h1>
+    <p>
+      Дано послідовність платіжок протягом року. Знайти сумарну кількість грошей
+      за: за весь рік; у першій половині року; у другій половині року; за літо;
+      за ІІ квартал; за парні місяці (з парними номерами); за місяці, які є
+      початковими у сезоні (весна, літо, осінь, зима).
+    </p>
+    <script>
+      
+      function getArrayPayments(numberMonth) {
+        let arrayPayments = [];
+        for (let i = 1; i <= numberMonth; i++) {
+          let userPaymentPerMonth = parseFloat(
+            prompt(`Введіть, будь ласка, суму за ${i} місяць`, 200)
+          );
+          arrayPayments.push(userPaymentPerMonth);
+        }
+
+        return arrayPayments;
+      }
+
+      const arrayPayments = getArrayPayments(12);
+
+      function getTotalPeymentsPerYear(arrayPayments) {
+        let total = 0;
+        for (let i = 0; i < arrayPayments.length; i++) {
+          total += arrayPayments[i];
+        }
+
+        return total;
+      }
+
+      const totalPeymentsPerYear = getTotalPeymentsPerYear(arrayPayments);
+
+      function getTotalPeymentsFirstHalfYear(arrayPayments) {
+        let total = 0;
+
+        for (let i = 0; i < 6; i++) {
+          total += arrayPayments[i];
+        }
+
+        return total;
+      }
+
+      const totalPeymentsFirstHalffYear =
+        getTotalPeymentsFirstHalfYear(arrayPayments);
+
+      function getTotalPeymentsSecondHalfYear(arrayPayments) {
+        let total = 0;
+
+        for (let i = 6; i < 12; i++) {
+          total += arrayPayments[i];
+        }
+
+        return total;
+      }
+
+      const totalPeymentsSecondHalffYear =
+        getTotalPeymentsSecondHalfYear(arrayPayments);
+
+      function getTotalPeymentsSummer(arrayPayments) {
+        let total = 0;
+
+        for (let i = 6; i < 9; i++) {
+          total += arrayPayments[i];
+        }
+
+        return total;
+      }
+
+      const totalPeymentsSummer = getTotalPeymentsSummer(arrayPayments);
+
+      function getTotalPeymentsSecondQuarter(arrayPayments) {
+        let total = 0;
+
+        for (let i = 4; i < 7; i++) {
+          total += arrayPayments[i];
+        }
+
+        return total;
+      }
+
+      const totalPeymentsSecondQuarter =
+        getTotalPeymentsSecondQuarter(arrayPayments);
+
+      function getTotalPeymentsPairedMonths(arrayPayments) {
+        let total = 0;
+
+        for (let i = 1; i < arrayPayments.length; i += 2) {
+          total += arrayPayments[i];
+        }
+
+        return total;
+      }
+
+      const totalPeymentsPairedMonths =
+        getTotalPeymentsPairedMonths(arrayPayments);
+
+      function getTotalPeymentsInitialMonthsSeason(arrayPayments) {
+        total = 0;
+        for (let i = 2; i <= arrayPayments.length; i += 3) {
+          total += arrayPayments[i];
+          console.log(total);
+        }
+
+        return total;
+      }
+
+      const totalPeymentsInitialMonthsSeason =
+        getTotalPeymentsInitialMonthsSeason(arrayPayments);
+
+      document.write(
+        `Сумарна кількість грошей за весь рік = ${totalPeymentsPerYear} грн <br>`
+      );
+      document.write(
+        `Сумарна кількість грошей за першу половину року = ${totalPeymentsFirstHalffYear} грн <br>`
+      );
+      document.write(
+        `Сумарна кількість грошей за другу половину року = ${totalPeymentsSecondHalffYear} грн <br>`
+      );
+      document.write(
+        `Сумарна кількість грошей за літо = ${totalPeymentsSummer} грн <br>`
+      );
+      document.write(
+        `Сумарна кількість грошей за другий квартал = ${totalPeymentsSecondQuarter} грн <br>`
+      );
+      document.write(
+        `Сумарна кількість грошей за парні місяці = ${totalPeymentsPairedMonths} грн <br>`
+      );
+      document.write(
+        `Сумарна кількість грошей за місяці, які є початковими у сезоні = ${totalPeymentsInitialMonthsSeason} грн <br>`
+      );
+    </script>
+  </body>
+</html>

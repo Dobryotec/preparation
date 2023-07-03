@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Task 4</title>
+  </head>
+  <body>
+    <h1>Task 4</h1>
+    <p>
+      Дано послідовність номерів автомобілів. Підрахувати кількість номерів, які
+      : • починаються на букву «А»; • перша і остання літери співпадають; •
+      складаються з більше ніш 5 символів;
+    </p>
+    <script>
+      const curNumbers = getArrayCarNumbers();
+      const startLetter = "A";
+      const numberCarsStartLetter = getNumberCarsStartLetter(
+        curNumbers,
+        startLetter
+      );
+      const numberCarsMoreFiveCharacters =
+        getNumberCarsMoreFiveCharacters(curNumbers);
+
+      function getArrayCarNumbers() {
+        let curNumbers = [];
+
+        for (let i = 0; i < 3; i++) {
+          let curNumber = prompt(
+            "Введіть, будь ласка, номер машини"
+          ).toUpperCase();
+          curNumbers.push(curNumber);
+        }
+
+        return curNumbers;
+      }
+
+      function getNumberCarsStartLetter(curNumbers, startLetter) {
+        let numberCarsStartLetter = 0;
+        for (let i = 0; i < curNumbers.length; i++) {
+          if (curNumbers[i][0] === startLetter.toUpperCase())
+            numberCarsStartLetter++;
+        }
+
+        return numberCarsStartLetter;
+      }
+
+      function getNumberCarsStartEndLetter(curNumbers) {
+        let numberCarsStartEndLetter = 0;
+
+        for (let i = 0; i < curNumbers.length; i++) {
+          if (curNumbers[i][0] === curNumbers[i][curNumbers[i].length - 1])
+            numberCarsStartEndLetter++;
+        }
+
+        return numberCarsStartEndLetter;
+      }
+
+      const numberCarsStartEndLetter = getNumberCarsStartEndLetter(curNumbers);
+
+      function getNumberCarsMoreFiveCharacters(curnumbers) {
+        let numberCarsMoreFiveCharacters = 0;
+
+        for (let i = 0; i < curNumbers.length; i++) {
+          if (curNumbers[i].length > 5) numberCarsMoreFiveCharacters++;
+        }
+
+        return numberCarsMoreFiveCharacters;
+      }
+
+      document.write(
+        `Кількість номерів, які починаються на ${startLetter} = ${numberCarsStartLetter} <br>`
+      );
+
+      document.write(
+        `Кількість номерів, в яких перша і остання літери співпадають = ${numberCarsStartEndLetter} <br>`
+      );
+
+      document.write(
+        `Кількість номерів, які складаються з більше ніж 5 символів = ${numberCarsMoreFiveCharacters}`
+      );
+    </script>
+  </body>
+</html>

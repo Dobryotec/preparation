@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Task 3</title>
+  </head>
+  <body>
+    <h1>Task 3</h1>
+    <p>
+      Дано масив імен учнів. З’ясувати скільки разів зустрічається ім’я «Іван».
+    </p>
+    <script>
+      function getArrayStudents(numberStudents) {
+        let arrayStudents = [];
+        for (let i = 0; i < numberStudents; i++) {
+          let student = prompt(
+            "Введіть, будь ласка, ім'я студента"
+          ).toUpperCase();
+          arrayStudents.push(student);
+        }
+
+        return arrayStudents;
+      }
+
+      const students = getArrayStudents(3);
+      let nameToCount = "Іван";
+
+      function getNumberNameStudent(students, nameToCount) {
+        let numberNameStudent = 0;
+
+        for (let i = 0; i < students.length; i++) {
+          if (students[i] === nameToCount.toUpperCase()) numberNameStudent++;
+        }
+        return numberNameStudent;
+      }
+
+      const numberNameStudent = getNumberNameStudent(students, nameToCount);
+
+      document.write(
+        `Ім'я ${nameToCount} зустрічається ${numberNameStudent} рази`
+      );
+    </script>
+  </body>
+</html>

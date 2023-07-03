@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Task 5</title>
+  </head>
+  <body>
+    <h1>Task 5</h1>
+    <p>
+      Дано послідовність оцінок учня. Підрахувати кількість: 1) двійок 2)
+      кількість хороших оцінок (добре, відмінно); 3) кількість оцінок, які нижче
+      середнього.
+    </p>
+    <script>
+      const studentGrades = getStudentGrades(4);
+      const numberDeuces = getNumberDeuces(studentGrades);
+      const numberGoodGrades = getGoodGrades(studentGrades);
+      const averageScore = getAverageGrades(studentGrades);
+      const numberBelowAverageScore = getNumberBelowAverageScore(
+        studentGrades,
+        averageScore
+      );
+
+      function getStudentGrades(numberGrades) {
+        let studentGrades = [];
+
+        for (let i = 0; i < numberGrades; i++) {
+          let studentGrade = parseInt(
+            prompt("Введіть, будь ласка, оцінку студента")
+          );
+          studentGrades.push(studentGrade);
+        }
+        return studentGrades;
+      }
+
+      function getNumberDeuces(studentGrades) {
+        let numberDeuces = 0;
+        for (let i = 0; i < studentGrades.length; i++) {
+          if (studentGrades[i] === 2) numberDeuces++;
+        }
+        return numberDeuces;
+      }
+
+      function getGoodGrades(studentGrades) {
+        let numberGoodGrades = 0;
+
+        for (let i = 0; i < studentGrades.length; i++) {
+          if (studentGrades[i] === 4 || studentGrades[i] === 5)
+            numberGoodGrades++;
+        }
+
+        return numberGoodGrades;
+      }
+
+      function getAverageGrades(studentGrades) {
+        let total = 0;
+        for (let i = 0; i < studentGrades.length; i++) {
+          total += studentGrades[i];
+        }
+
+        return total / studentGrades.length;
+      }
+
+      function getNumberBelowAverageScore(studentGrades, averageScore) {
+        let numberBelowAverageScore = 0;
+
+        for (let i = 0; i < studentGrades.length; i++) {
+          if (studentGrades[i] < averageScore) numberBelowAverageScore++;
+        }
+
+        return numberBelowAverageScore;
+      }
+
+      document.write(`Кількість двійок = ${numberDeuces} <br>`);
+
+      document.write(`Кількість хороших оцінок = ${numberGoodGrades} <br>`);
+
+      document.write(
+        `Кількість оцінок, які нижче середнього = ${numberBelowAverageScore}`
+      );
+    </script>
+  </body>
+</html>
