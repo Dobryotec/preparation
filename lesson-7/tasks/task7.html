@@ -26,10 +26,10 @@
       body.append(table);
 
       function createTable(quantityRows, quantityColumns) {
-        for (i = 0; i < quantityColumns; i++) {
+        for (let i = 0; i < quantityColumns; i++) {
           const tr = document.createElement("tr");
           table.append(tr);
-          for (j = 0; j < quantityColumns; j++) {
+          for (let j = 0; j < quantityColumns; j++) {
             const td = document.createElement("td");
             td.style.cssText = "border: 1px solid black; padding: 8px;";
             tr.append(td);

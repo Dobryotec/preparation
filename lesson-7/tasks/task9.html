@@ -20,7 +20,7 @@
 
       function getNumberNegativeTemperature(temperatures) {
         let quantityNegativeTemperature = 0;
-        for (temperature of temperatures) {
+        for (const temperature of temperatures) {
           if (temperature < 0) quantityNegativeTemperature++;
         }
         return quantityNegativeTemperature;
