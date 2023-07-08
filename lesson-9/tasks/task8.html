@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Task 8</title>
+  </head>
+  <body>
+    <h1>Task 8</h1>
+    <p>
+      Дано масив номерів авто. Сформувати новий масив тих, які починаються на
+      «А»
+    </p>
+    <script>
+      const getArrayNumbersCars = (numbersCars) => {
+        let arrayNumbersCars = [];
+
+        for (let i = 0; i < numbersCars; i++) {
+          const userNumberCar = prompt("Введіть, будь ласка, номер машини");
+          arrayNumbersCars.push(userNumberCar.toLocaleUpperCase());
+        }
+
+        return arrayNumbersCars;
+      };
+
+      const arrayNumbersCars = getArrayNumbersCars(4);
+
+      const newArrayNumbersCarsStartingWithLetterA = [];
+
+      arrayNumbersCars.forEach((element, index) => {
+        if (element[0] === "A")
+          newArrayNumbersCarsStartingWithLetterA.push(arrayNumbersCars[index]);
+      });
+
+      document.write(`Масив номерів авто = [${arrayNumbersCars}]<br>`);
+      document.write(
+        `Масив номерів авто, які починаються на "A" = [${newArrayNumbersCarsStartingWithLetterA}]`
+      );
+    </script>
+  </body>
+</html>

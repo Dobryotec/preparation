@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Task 9</title>
+  </head>
+  <body>
+    <h1>Task 9</h1>
+    <p>Дано масив імен. Сформувати масив з перших літер цих імен.</p>
+    <script>
+      const getArrayNames = (numberNames) => {
+        let arrayNames = [];
+
+        for (let i = 0; i < numberNames; i++) {
+          const userName = prompt("Введіть, будь ласка, ім'я");
+          arrayNames.push(userName);
+        }
+
+        return arrayNames;
+      };
+
+      const arrayNames = getArrayNames(2);
+      const arrayFirstLetterNames = [];
+      arrayNames.forEach((element) => arrayFirstLetterNames.push(element[0]));
+
+      document.write(`Масив імен = [${arrayNames}] <br>`);
+      document.write(`Масив перших букв імен = [${arrayFirstLetterNames}]`);
+    </script>
+  </body>
+</html>

@@ -19,13 +19,13 @@
         prompt("Введіть, будь ласка, кількість стовпців", 2)
       );
       const userMessage = prompt("Введіть, будь ласка, Ваше повідомлення");
-      const body = document.body;
-      const table = document.createElement("table");
-      table.style.cssText =
-        "border: 1px solid black; box-shadow: 0 0 10px rgba(0, 0, 0, 0.3); margin: 0 auto";
-      body.append(table);
 
-      function createTable(quantityRows, quantityColumns) {
+      function createTable(quantityRows, quantityColumns, userMessage) {
+        const body = document.body;
+        const table = document.createElement("table");
+        table.style.cssText =
+          "border: 1px solid black; box-shadow: 0 0 10px rgba(0, 0, 0, 0.3); margin: 0 auto";
+        body.append(table);
         for (let i = 0; i < quantityColumns; i++) {
           const tr = document.createElement("tr");
           table.append(tr);
@@ -38,7 +38,7 @@
         }
       }
 
-      createTable(quantityRows, quantityColumns);
+      createTable(quantityRows, quantityColumns, userMessage);
     </script>
   </body>
 </html>

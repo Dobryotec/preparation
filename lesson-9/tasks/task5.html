@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Task 5</title>
+  </head>
+  <body>
+    <h1>Task 5</h1>
+    <p>Дано масив елементів. Знайти добуток додатних елементів</p>
+    <script>
+      function getArrayElements(numberElements) {
+        let arrayElements = [];
+
+        for (let i = 0; i < numberElements; i++) {
+          const userElement = parseInt(
+            prompt(`Введіть, будь ласка, ${i + 1} число`, 10)
+          );
+          arrayElements.push(userElement);
+        }
+        return arrayElements;
+      }
+
+      const arrayElements = getArrayElements(4);
+
+      function getMultiplicationPositiveElements(arrayElements) {
+        let multiplicationPositiveElements = 1;
+        for (const element of arrayElements) {
+          if (element > 0) multiplicationPositiveElements *= element;
+        }
+
+        return multiplicationPositiveElements;
+      }
+
+      const multiplicationPositiveElements =
+        getMultiplicationPositiveElements(arrayElements);
+
+      document.write(
+        `Добуток додатніх чисел =  ${
+          multiplicationPositiveElements === 1
+            ? "додатніх чисел не має"
+            : multiplicationPositiveElements
+        }`
+      );
+    </script>
+  </body>
+</html>

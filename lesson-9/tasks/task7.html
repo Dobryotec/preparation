@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Task 7</title>
+  </head>
+  <body>
+    <h1>Task 7</h1>
+    <p>
+      Дано масив цін. Змінити цей масив так, що на ціни товарів, які більші за
+      1000 грн. дати 30% знижки.
+    </p>
+    <script>
+      const getArrayPrices = (numberPrices) => {
+        let arrayPrices = [];
+
+        for (let i = 0; i < numberPrices; i++) {
+          const userPrice = parseFloat(
+            prompt(`Введіть, будь ласка, ${i + 1} ціну`, 1000)
+          );
+          arrayPrices.push(userPrice);
+        }
+
+        return arrayPrices;
+      };
+
+      const arrayPrices = getArrayPrices(4);
+      const newArrayPrices = [...arrayPrices];
+
+      newArrayPrices.forEach((element, index) => {
+        if (element > 1000)
+          newArrayPrices[index] =
+            newArrayPrices[index] - newArrayPrices[index] * 0.3;
+      });
+
+      document.write(`Масив цін до знижки = [${arrayPrices}] <br>`);
+      document.write(`Масив цін після знижки = [${newArrayPrices}]`);
+    </script>
+  </body>
+</html>

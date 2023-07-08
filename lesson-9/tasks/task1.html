@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Task 1</title>
+  </head>
+  <body>
+    <h1>Task 1</h1>
+    <p>
+      Користувач вводить кількість елементів. Створити масив, що складається з
+      вказаної кількості елементів заповнених нулями.
+    </p>
+    <script>
+      const userNumberElements = parseInt(
+        prompt("Введіть, будь ласка, кількість елементів", 3)
+      );
+
+      const filledArray = new Array(userNumberElements).fill(0);
+      document.write(`Ваш масив = [${filledArray}]`);
+    </script>
+  </body>
+</html>

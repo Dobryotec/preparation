@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Task 4</title>
+  </head>
+  <body>
+    <h1>Task 4</h1>
+    <p>Дано масив елементів. Вивести на екран елементи, що більші за 100</p>
+    <script>
+      function getArrayElements(numberElements) {
+        let arrayElements = [];
+
+        for (let i = 0; i < numberElements; i++) {
+          const userElement = parseInt(
+            prompt(`Введіть, будь ласка, ${i + 1} число`, 10)
+          );
+          arrayElements.push(userElement);
+        }
+
+        return arrayElements;
+      }
+
+      const arrayElements = getArrayElements(5);
+
+      function getElementsOverOneHundred(arrayElements) {
+        let arrayElementsOverOneHundred = [];
+        for (const element of arrayElements) {
+          if (element > 100) arrayElementsOverOneHundred.push(element);
+        }
+
+        return arrayElementsOverOneHundred;
+      }
+
+      const elementsOverOneHundred = getElementsOverOneHundred(arrayElements);
+
+      document.write(
+        ` Числа більше за 100 = ${
+          elementsOverOneHundred.length > 0
+            ? elementsOverOneHundred
+            : "Таких чисел не має"
+        }`
+      );
+    </script>
+  </body>
+</html>
