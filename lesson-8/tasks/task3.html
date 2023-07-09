@@ -25,12 +25,13 @@
 
       const students = getArrayStudents(3);
       let nameToCount = "Іван";
+      let nameToCountUpperCase = nameToCount.toUpperCase();
 
       function getNumberNameStudent(students, nameToCount) {
         let numberNameStudent = 0;
 
         for (let i = 0; i < students.length; i++) {
-          if (students[i] === nameToCount.toUpperCase()) numberNameStudent++;
+          if (students[i] === nameToCountUpperCase) numberNameStudent++;
         }
         return numberNameStudent;
       }

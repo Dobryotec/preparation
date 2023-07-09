@@ -37,8 +37,9 @@
 
       function getNumberCarsStartLetter(curNumbers, startLetter) {
         let numberCarsStartLetter = 0;
+        let startLetterUpperCase = startLetter.toUpperCase();
         for (let i = 0; i < curNumbers.length; i++) {
-          if (curNumbers[i][0] === startLetter.toUpperCase())
+          if (curNumbers[i][0] === startLetterUpperCase)
             numberCarsStartLetter++;
         }
 

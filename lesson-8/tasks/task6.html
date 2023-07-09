@@ -77,7 +77,7 @@
         maxPrice
       );
 
-      function getuserProducts(arrayPricesProducts, arrayNamesProducts) {
+      function getuserProducts(arrayPricesProducts, arrayNamesProducts, userMoney) {
         let userProducts = [];
         for (let i = 0; i < arrayPricesProducts.length; i++) {
           if (arrayPricesProducts[i] <= userMoney) {

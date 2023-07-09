@@ -14,16 +14,20 @@
       відмовиться). Знаходити сумарний виграш.
     </p>
     <script>
-      function getArrayRandomNumbers(quantityNumbers) {
+      const max = 500;
+      const min = -500;
+      function getArrayRandomNumbers(quantityNumbers, max, min) {
         let array = [];
         for (let i = 1; i <= quantityNumbers; i++) {
-          let randomNumber = -500 + Math.floor(Math.random() * 1001);
+          let randomNumber = min + Math.floor(Math.random() * (max - min) + 1);
           array.push(randomNumber);
         }
         return array;
       }
 
-      const arrayRandomNumbers = getArrayRandomNumbers(5);
+      const arrayRandomNumbers = getArrayRandomNumbers(5, max, min);
+
+      console.log(arrayRandomNumbers);
 
       function getTotalWin(arrayRandomNumbers) {
         let total = 0;

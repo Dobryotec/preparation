@@ -21,7 +21,7 @@
             prompt(`Введіть, будь ласка, ${i} оцінку студента`, 5)
           );
           grades.push(user);
-          1;
+          
         }
         return grades;
       }
@@ -34,8 +34,8 @@
           total += array[i];
         }
 
-        let average = total / array.length;
-        return average;
+        return total / array.length;
+      
       }
 
       const averageScore = getAverageScore(arrayGrades);
