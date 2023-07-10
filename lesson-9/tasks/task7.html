@@ -28,7 +28,7 @@
       const arrayPrices = getArrayPrices(4);
       const newArrayPrices = [...arrayPrices];
 
-      newArrayPrices.forEach((element, index) => {
+      newArrayPrices.forEach((element, index, newArrayPrices) => {
         if (element > 1000)
           newArrayPrices[index] =
             newArrayPrices[index] - newArrayPrices[index] * 0.3;

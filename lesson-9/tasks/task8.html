@@ -27,7 +27,7 @@
 
       const newArrayNumbersCarsStartingWithLetterA = [];
 
-      arrayNumbersCars.forEach((element, index) => {
+      arrayNumbersCars.forEach((element, index, arrayNumbersCars) => {
         if (element[0] === "A")
           newArrayNumbersCarsStartingWithLetterA.push(arrayNumbersCars[index]);
       });

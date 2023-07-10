@@ -27,7 +27,7 @@
       const arrayElements = getArrayElements(4);
       const firstElement = arrayElements[0];
 
-      arrayElements.forEach((element, index) => {
+      arrayElements.forEach((element, index, arrayElements) => {
         if (element > firstElement) arrayElements[index] *= 2;
       });
 

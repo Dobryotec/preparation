@@ -30,7 +30,8 @@
       const newArrayAmountTaxPaid = [...arrayPrices];
 
       newArrayAmountTaxPaid.forEach(
-        (element, index) => (newArrayAmountTaxPaid[index] *= 0.2)
+        (element, index, newArrayAmountTaxPaid) =>
+          (newArrayAmountTaxPaid[index] *= 0.2)
       );
 
       document.write(`Маcив цін = [${arrayPrices}] <br>`);
