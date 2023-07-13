@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Task 13</title>
+  </head>
+  <body>
+    <h1>Task 13</h1>
+    <p>Знайти індекс останньої ціни, що більше за 1000</p>
+    <script>
+      const userNumberPrices = parseInt(
+        prompt("Введіть, будь ласка, кількість цін", 4)
+      );
+      const min = 1;
+      const max = 10000;
+
+      function getArrayPrices(userNumberPrices, min, max) {
+        let arrayPrices = [];
+
+        for (let i = 0; i < userNumberPrices; i++) {
+          let randomNumber =
+            min + Math.floor(Math.random() * (max - min) + min);
+          arrayPrices.push(randomNumber);
+        }
+
+        return arrayPrices;
+      }
+
+      const arrayPrices = getArrayPrices(userNumberPrices, min, max);
+
+      const lastIndexPriceOverThousand = arrayPrices.findLastIndex(
+        (price) => price > 1000
+      );
+
+      document.write(`Масив = [${arrayPrices}]<br>`);
+      document.write(
+        `Індекс останньої ціни, яка більше за 1000 = ${lastIndexPriceOverThousand}`
+      );
+    </script>
+  </body>
+</html>

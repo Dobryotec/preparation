@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Task 1</title>
+  </head>
+  <body>
+    <h1>Task 1</h1>
+    <p>Сформувати новий масив, у якому є тільки ті, що більші за 1000 грн.</p>
+    <script>
+      const userNumberPrices = parseInt(
+        prompt("Введіть, будь ласка, кількість цін", 4)
+      );
+      const min = 1;
+      const max = 10000;
+
+      function getArrayPrices(userNumberPrices, min, max) {
+        let arrayPrices = [];
+
+        for (let i = 0; i < userNumberPrices; i++) {
+          let randomNumber =
+            min + Math.floor(Math.random() * (max - min) + min);
+          arrayPrices.push(randomNumber);
+        }
+
+        return arrayPrices;
+      }
+
+      const arrayPrices = getArrayPrices(userNumberPrices, min, max);
+
+      let arrayWithPricesOverThousand = arrayPrices.filter(
+        (price) => price > 1000
+      );
+
+      document.write(`Загальний масив цін = [${arrayPrices}] <br>`);
+      document.write(
+        `Масив цін більше за 1000 = [${arrayWithPricesOverThousand}]`
+      );
+    </script>
+  </body>
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Task 5</title>
+  </head>
+  <body>
+    <h1>Task 5</h1>
+    <p>Підрахувати кількість змін цін</p>
+    <script>
+      const userNumberPrices = parseInt(
+        prompt("Введіть, будь ласка, кількість цін", 4)
+      );
+      const min = 1;
+      const max = 10000;
+
+      function getArrayPrices(userNumberPrices, min, max) {
+        let arrayPrices = [];
+
+        for (let i = 0; i < userNumberPrices; i++) {
+          let randomNumber =
+            min + Math.floor(Math.random() * (max - min) + min);
+          arrayPrices.push(randomNumber);
+        }
+
+        return arrayPrices;
+      }
+
+      const arrayPrices = getArrayPrices(userNumberPrices, min, max);
+
+      const numberPriceChanges = arrayPrices.reduce(
+        (result, price, index, arr) => {
+          if (index > 0 && price !== arr[index - 1]) result++;
+          return result;
+        },
+        0
+      );
+
+      document.write(`Масив цін = [${arrayPrices}] <br>`);
+
+      document.write(`Кількість змін цін = ${numberPriceChanges}`);
+    </script>
+  </body>
+</html>

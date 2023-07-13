@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Task 7</title>
+  </head>
+  <body>
+    <h1>Task 7</h1>
+    <p>Визначати, чи усі ціни більше за 1000</p>
+    <script>
+      const userNumberPrices = parseInt(
+        prompt("Введіть, будь ласка, кількість цін", 4)
+      );
+      const min = 1;
+      const max = 10000;
+
+      function getArrayPrices(userNumberPrices, min, max) {
+        let arrayPrices = [];
+
+        for (let i = 0; i < userNumberPrices; i++) {
+          let randomNumber =
+            min + Math.floor(Math.random() * (max - min) + min);
+          arrayPrices.push(randomNumber);
+        }
+
+        return arrayPrices;
+      }
+
+      const arrayPrices = getArrayPrices(userNumberPrices, min, max);
+      document.write(`Масив цін = [${arrayPrices}] <br>`);
+
+      if (arrayPrices.every((price) => price > 1000))
+        document.write("Всі ціни більше за 1000");
+      else document.write("Ні, не всі ціни більше за 1000");
+    </script>
+  </body>
+</html>
