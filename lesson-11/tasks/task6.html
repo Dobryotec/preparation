@@ -72,10 +72,10 @@
 
       const wednesday = Math.floor(userColumnsNumber / 2);
 
-      function getMaxProfitStoresWednesday(table, userRowNumber, wednesday) {
+      function getMaxProfitStoresWednesday(table, wednesday) {
         let max = table[0][wednesday - 1];
 
-        for (let i = 0; i < userRowNumber; i++) {
+        for (let i = 0; i < table.length; i++) {
           if (max < table[i][wednesday - 1]) max = table[i][wednesday - 1];
         }
         return max;
@@ -84,7 +84,6 @@
       document.write(
         `Макисмальний прибуток за середу = ${getMaxProfitStoresWednesday(
           table,
-          userRowNumber,
           wednesday
         )}`
       );

@@ -73,14 +73,10 @@
         `Прибуток магазинів протягом тижня = <br>${table.join("<br>")}<br>`
       );
 
-      function getSumProfitWorkingDays(
-        table,
-        userRowNumber,
-        userWorkingDaysNumber
-      ) {
+      function getSumProfitWorkingDays(table) {
         let sum = 0;
 
-        for (let i = 0; i < userRowNumber; i++) {
+        for (let i = 0; i < table.length; i++) {
           for (let j = 0; j < userWorkingDaysNumber; j++) {
             sum += table[i][j];
           }
@@ -91,7 +87,6 @@
       document.write(
         `Загальний прибуток за робочі дні = ${getSumProfitWorkingDays(
           table,
-          userRowNumber,
           userWorkingDaysNumber
         )}<br>`
       );

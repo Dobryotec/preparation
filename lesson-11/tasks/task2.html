@@ -70,11 +70,11 @@
         `Прибуток магазинів протягом тижня = <br>${table.join("<br>")}<br>`
       );
 
-      function getSumEachStorePerWeek(table, userRowNumber, userColumnsNumber) {
+      function getSumEachStorePerWeek(table) {
         let sums = [];
-        for (let i = 0; i < userRowNumber; i++) {
+        for (let i = 0; i < table.length; i++) {
           let sum = 0;
-          for (let j = 0; j < userColumnsNumber; j++) {
+          for (let j = 0; j < table[i].length; j++) {
             sum += table[i][j];
           }
           sums.push(sum);
@@ -82,11 +82,7 @@
         return sums;
       }
 
-      const arraySumsEachStorePerWeek = getSumEachStorePerWeek(
-        table,
-        userRowNumber,
-        userColumnsNumber
-      );
+      const arraySumsEachStorePerWeek = getSumEachStorePerWeek(table);
 
       for (let i = 0; i < arraySumsEachStorePerWeek.length; i++) {
         document.write(

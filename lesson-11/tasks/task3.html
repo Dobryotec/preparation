@@ -77,9 +77,9 @@
         userColumnsNumber
       ) {
         let sums = [];
-        for (let j = 0; j < userColumnsNumber; j++) {
+        for (let j = 0; j < table[0].length; j++) {
           let sum = 0;
-          for (let i = 0; i < userRowNumber; i++) {
+          for (let i = 0; i < table.length; i++) {
             sum += table[i][j];
           }
           sums.push(sum);

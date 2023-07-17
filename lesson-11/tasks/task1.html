@@ -93,15 +93,10 @@
         )}<br>`
       );
 
-      function getSumNumbersLowerLeftSquare(
-        table,
-        halfSize,
-        halfRow,
-        userRowNumber
-      ) {
+      function getSumNumbersLowerLeftSquare(table, halfSize, halfRow) {
         let sum = 0;
 
-        for (let i = halfRow; i < userRowNumber; i++) {
+        for (let i = halfRow; i < table.length; i++) {
           for (let j = 0; j < halfSize; j++) {
             sum += table[i][j];
           }
@@ -113,21 +108,15 @@
         `Сума чисел лівого нижнього квадрату = ${getSumNumbersLowerLeftSquare(
           table,
           halfSize,
-          halfRow,
-          userRowNumber
+          halfRow
         )}<br>`
       );
 
-      function getSumNumbersRightUpperSquare(
-        table,
-        userArrayLength,
-        halfSize,
-        halfRow
-      ) {
+      function getSumNumbersRightUpperSquare(table, halfSize, halfRow) {
         let sum = 0;
 
         for (let i = 0; i < halfRow; i++) {
-          for (let j = halfSize; j < userArrayLength; j++) {
+          for (let j = halfSize; j < table[i].length; j++) {
             sum += table[i][j];
           }
         }
@@ -137,23 +126,16 @@
       document.write(
         `Сума чисел вернього правого квадрату = ${getSumNumbersRightUpperSquare(
           table,
-          userArrayLength,
           halfSize,
           halfRow
         )}<br>`
       );
 
-      function getSumNumbersLowerRightSquare(
-        table,
-        halfRow,
-        userRowNumber,
-        halfSize,
-        userArrayLength
-      ) {
+      function getSumNumbersLowerRightSquare(table, halfRow, halfSize) {
         let sum = 0;
 
-        for (let i = halfRow; i < userRowNumber; i++) {
-          for (let j = halfSize; j < userArrayLength; j++) {
+        for (let i = halfRow; i < table.length; i++) {
+          for (let j = halfSize; j < table[i].length; j++) {
             sum += table[i][j];
           }
         }
@@ -165,17 +147,15 @@
         `Сума чисел нижнього правого квадрату = ${getSumNumbersLowerRightSquare(
           table,
           halfRow,
-          userRowNumber,
-          halfSize,
-          userArrayLength
+          halfSize
         )}<br>`
       );
 
-      function getSumNumbersPairedRows(table, userRowNumber, userArrayLength) {
+      function getSumNumbersPairedRows(table) {
         let sum = 0;
 
-        for (let i = 1; i < userRowNumber; i += 2) {
-          for (let j = 0; j < userArrayLength; j++) {
+        for (let i = 1; i < table.length; i += 2) {
+          for (let j = 0; j < table[i].length; j++) {
             sum += table[i][j];
           }
         }
@@ -184,22 +164,14 @@
       }
 
       document.write(
-        `Сума чисел парних рядків = ${getSumNumbersPairedRows(
-          table,
-          userRowNumber,
-          userArrayLength
-        )}<br>`
+        `Сума чисел парних рядків = ${getSumNumbersPairedRows(table)}<br>`
       );
 
-      function getSumNumbersUnpairedColumns(
-        table,
-        userRowNumber,
-        userArrayLength
-      ) {
+      function getSumNumbersUnpairedColumns(table) {
         let sum = 0;
 
-        for (let i = 0; i < userRowNumber; i++) {
-          for (let j = 0; j < userArrayLength; j += 2) {
+        for (let i = 0; i < table.length; i++) {
+          for (let j = 0; j < table[i].length; j += 2) {
             sum += table[i][j];
           }
         }
@@ -208,21 +180,17 @@
 
       document.write(
         `Сума чисел непарних стовпців = ${getSumNumbersUnpairedColumns(
-          table,
-          userRowNumber,
-          userArrayLength
+          table
         )}<br>`
       );
 
       function getSumNumbersPairedRowsUnpairedColumnUnpairedRowsPairedColumns(
-        table,
-        userRowNumber,
-        userArrayLength
+        table
       ) {
         let sum = 0;
 
-        for (let i = 1; i < userRowNumber; i += 2) {
-          for (let j = 0; j < userArrayLength; j += 2) {
+        for (let i = 1; i < table.length; i += 2) {
+          for (let j = 0; j < table[i].length; j += 2) {
             sum += table[i][j];
           }
         }
@@ -232,17 +200,15 @@
 
       document.write(
         `Сума чисел в парних рядках та в непарних стовпцях = ${getSumNumbersPairedRowsUnpairedColumnUnpairedRowsPairedColumns(
-          table,
-          userRowNumber,
-          userArrayLength
+          table
         )}<br> `
       );
 
-      function getSumNumbersUnpairedRowsPairedColumns() {
+      function getSumNumbersUnpairedRowsPairedColumns(table) {
         let sum = 0;
 
-        for (let i = 0; i < userRowNumber; i += 2) {
-          for (let j = 1; j < userArrayLength; j += 2) {
+        for (let i = 0; i < table.length; i += 2) {
+          for (let j = 1; j < table[i].length; j += 2) {
             sum += table[i][j];
           }
         }
@@ -251,9 +217,7 @@
 
       document.write(
         `Сума чисел в непарних рядках в парних стовбцях = ${getSumNumbersUnpairedRowsPairedColumns(
-          table,
-          userMinNumber,
-          userArrayLength
+          table
         )}`
       );
     </script>
