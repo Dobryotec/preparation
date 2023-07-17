@@ -33,18 +33,20 @@
       const arrayPrices = getArrayPrices(userNumberPrices, min, max);
 
       const numberMaxPrice = arrayPrices.reduce(
-        (max, price, arrayPrices) => (price > max ? price : max),
+        (max, price, index, arrayPrices) => (price > max ? price : max),
         arrayPrices[0]
       );
 
-      const arrayPricesPercentageOfMax = arrayPrices.map((price) =>
-        parseFloat(((price / numberMaxPrice) * 100).toFixed(2))
+      const arrayPricesPercentageOfMax = arrayPrices.map(
+        (price) => (price / numberMaxPrice) * 100
       );
 
       document.write(`Масив цін = [${arrayPrices}] <br>`);
       document.write(`Найбільша ціна в масиві = ${numberMaxPrice}<br>`);
       document.write(
-        `Масив, що містить значення цін у відсотках стосовно максимальної = [${arrayPricesPercentageOfMax}]`
+        `Масив, що містить значення цін у відсотках стосовно максимальної = [${arrayPricesPercentageOfMax.map(
+          (price) => price.toFixed(2)
+        )}]`
       );
     </script>
   </body>

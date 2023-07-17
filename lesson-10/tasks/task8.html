@@ -30,7 +30,7 @@
       const arrayPrices = getArrayPrices(userNumberPrices, min, max);
 
       const numberPricesOverThousand = arrayPrices.reduce(
-        (quantity, price) => (price > 1000 ? (quantity += 1) : quantity),
+        (quantity, price) => (price > 1000 ? quantity + 1 : quantity),
         0
       );
 

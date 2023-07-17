@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h1>Task 2</h1>
+    <p>
+      Дано інформацію про прибуток К магазинів протягом тижня. Знайти :
+      загальний прибуток кожного масиву за тиждень;
+    </p>
+    <script>
+      const userColumnsNumber = parseInt(
+        prompt("Введіть, будь ласка, кількість чисел у рядку", 7)
+      );
+      const userMinNumber = parseInt(
+        prompt("Введіть, будь ласка, мінімальне число", 10)
+      );
+      const userMaxNumber = parseInt(
+        prompt("Введіть, будь ласка, максимальне число", 100)
+      );
+      const userRowNumber = parseInt(
+        prompt("Введіть, будь ласка, кількість рядків", 4)
+      );
+
+      function getRandomNumber(userMinNumber, userMaxNumber) {
+        return (
+          userMinNumber +
+          Math.floor(Math.random() * (userMaxNumber - userMinNumber) + 1)
+        );
+      }
+
+      function getArrayRandom(userColumnsNumber, userMinNumber, userMaxNumber) {
+        let arr = [];
+
+        for (let i = 0; i < userColumnsNumber; i++) {
+          const randomNumber = getRandomNumber(userMinNumber, userMaxNumber);
+          arr.push(randomNumber);
+        }
+        return arr;
+      }
+
+      function getRandomTable(
+        userRowNumber,
+        userColumnsNumber,
+        userMinNumber,
+        userMaxNumber
+      ) {
+        const table = [];
+        for (let i = 0; i < userRowNumber; i++) {
+          const randomRow = getArrayRandom(
+            userColumnsNumber,
+            userMinNumber,
+            userMaxNumber
+          );
+          table.push(randomRow);
+        }
+        return table;
+      }
+      const table = getRandomTable(
+        userRowNumber,
+        userColumnsNumber,
+        userMinNumber,
+        userMaxNumber
+      );
+
+      document.write(
+        `Прибуток магазинів протягом тижня = <br>${table.join("<br>")}<br>`
+      );
+
+      function getSumEachStorePerWeek(table, userRowNumber, userColumnsNumber) {
+        let sums = [];
+        for (let i = 0; i < userRowNumber; i++) {
+          let sum = 0;
+          for (let j = 0; j < userColumnsNumber; j++) {
+            sum += table[i][j];
+          }
+          sums.push(sum);
+        }
+        return sums;
+      }
+
+      const arraySumsEachStorePerWeek = getSumEachStorePerWeek(
+        table,
+        userRowNumber,
+        userColumnsNumber
+      );
+
+      for (let i = 0; i < arraySumsEachStorePerWeek.length; i++) {
+        document.write(
+          ` Загальна сума ${
+            i + 1
+          } магазину протягом ${userColumnsNumber} днів = ${
+            arraySumsEachStorePerWeek[i]
+          } <br>`
+        );
+      }
+    </script>
+  </body>
+</html>

@@ -30,14 +30,12 @@
       const arrayPrices = getArrayPrices(userNumberPrices, min, max);
 
       const sumPricesOverThousand = arrayPrices.reduce(
-        (sum, price) => (price > 1000 ? (sum += price) : sum),
+        (sum, price) => (price > 1000 ? sum + price : sum),
         0
       );
 
       document.write(`Масив цін = [${arrayPrices}]<br>`);
       document.write(`Сума цін, що більше за 1000 = ${sumPricesOverThousand}`);
-
-      
     </script>
   </body>
 </html>

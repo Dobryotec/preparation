@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Task 1</title>
+  </head>
+  <body>
+    <h1>Task 1</h1>
+    <p>
+      Знайти суми елементів у вказаній області (масиви розділені на 4 рівні
+      частини - не звертаємо увагу на криві малюнки
+    </p>
+    <script>
+      const userArrayLength = parseInt(
+        prompt("Введіть, будь ласка, кількість чисел у рядку", 10)
+      );
+      const userMinNumber = parseInt(
+        prompt("Введіть, будь ласка, мінімальне число", 10)
+      );
+      const userMaxNumber = parseInt(
+        prompt("Введіть, будь ласка, максимальне число", 100)
+      );
+      const userRowNumber = parseInt(
+        prompt("Введіть, будь ласка, кількість рядків", 4)
+      );
+
+      function getRandomNumber(userMinNumber, userMaxNumber) {
+        return (
+          userMinNumber +
+          Math.floor(Math.random() * (userMaxNumber - userMinNumber) + 1)
+        );
+      }
+
+      function getRandomArray(userArrayLength, userMinNumber, userMaxNumber) {
+        const arr = [];
+        for (let i = 0; i < userArrayLength; i++) {
+          const randomNumber = getRandomNumber(userMinNumber, userMaxNumber);
+          arr.push(randomNumber);
+        }
+        return arr;
+      }
+
+      function getRandomTable(
+        userRowNumber,
+        userArrayLength,
+        userMinNumber,
+        userMaxNumber
+      ) {
+        const table = [];
+        for (let i = 0; i < userRowNumber; i++) {
+          const randomRow = getRandomArray(
+            userArrayLength,
+            userMinNumber,
+            userMaxNumber
+          );
+          table.push(randomRow);
+        }
+
+        return table;
+      }
+
+      const table = getRandomTable(
+        userRowNumber,
+        userArrayLength,
+        userMinNumber,
+        userMaxNumber
+      );
+
+      document.write(` Масив = <br>
+        ${table.join("<br>")}`);
+
+      const halfSize = Math.floor(userArrayLength / 2);
+
+      const halfRow = Math.floor(userRowNumber / 2);
+
+      function getSumNumbersUpperLeftSquare(table, halfSize, halfRow) {
+        let sum = 0;
+
+        for (let i = 0; i < halfRow; i++) {
+          for (let j = 0; j < halfSize; j++) {
+            sum += table[i][j];
+          }
+        }
+        return sum;
+      }
+
+      document.write(
+        `<br> Сума чисел лівого верхнього квадрату = ${getSumNumbersUpperLeftSquare(
+          table,
+          halfSize,
+          halfRow
+        )}<br>`
+      );
+
+      function getSumNumbersLowerLeftSquare(
+        table,
+        halfSize,
+        halfRow,
+        userRowNumber
+      ) {
+        let sum = 0;
+
+        for (let i = halfRow; i < userRowNumber; i++) {
+          for (let j = 0; j < halfSize; j++) {
+            sum += table[i][j];
+          }
+        }
+        return sum;
+      }
+
+      document.write(
+        `Сума чисел лівого нижнього квадрату = ${getSumNumbersLowerLeftSquare(
+          table,
+          halfSize,
+          halfRow,
+          userRowNumber
+        )}<br>`
+      );
+
+      function getSumNumbersRightUpperSquare(
+        table,
+        userArrayLength,
+        halfSize,
+        halfRow
+      ) {
+        let sum = 0;
+
+        for (let i = 0; i < halfRow; i++) {
+          for (let j = halfSize; j < userArrayLength; j++) {
+            sum += table[i][j];
+          }
+        }
+        return sum;
+      }
+
+      document.write(
+        `Сума чисел вернього правого квадрату = ${getSumNumbersRightUpperSquare(
+          table,
+          userArrayLength,
+          halfSize,
+          halfRow
+        )}<br>`
+      );
+
+      function getSumNumbersLowerRightSquare(
+        table,
+        halfRow,
+        userRowNumber,
+        halfSize,
+        userArrayLength
+      ) {
+        let sum = 0;
+
+        for (let i = halfRow; i < userRowNumber; i++) {
+          for (let j = halfSize; j < userArrayLength; j++) {
+            sum += table[i][j];
+          }
+        }
+
+        return sum;
+      }
+
+      document.write(
+        `Сума чисел нижнього правого квадрату = ${getSumNumbersLowerRightSquare(
+          table,
+          halfRow,
+          userRowNumber,
+          halfSize,
+          userArrayLength
+        )}<br>`
+      );
+
+      function getSumNumbersPairedRows(table, userRowNumber, userArrayLength) {
+        let sum = 0;
+
+        for (let i = 1; i < userRowNumber; i += 2) {
+          for (let j = 0; j < userArrayLength; j++) {
+            sum += table[i][j];
+          }
+        }
+
+        return sum;
+      }
+
+      document.write(
+        `Сума чисел парних рядків = ${getSumNumbersPairedRows(
+          table,
+          userRowNumber,
+          userArrayLength
+        )}<br>`
+      );
+
+      function getSumNumbersUnpairedColumns(
+        table,
+        userRowNumber,
+        userArrayLength
+      ) {
+        let sum = 0;
+
+        for (let i = 0; i < userRowNumber; i++) {
+          for (let j = 0; j < userArrayLength; j += 2) {
+            sum += table[i][j];
+          }
+        }
+        return sum;
+      }
+
+      document.write(
+        `Сума чисел непарних стовпців = ${getSumNumbersUnpairedColumns(
+          table,
+          userRowNumber,
+          userArrayLength
+        )}<br>`
+      );
+
+      function getSumNumbersPairedRowsUnpairedColumnUnpairedRowsPairedColumns(
+        table,
+        userRowNumber,
+        userArrayLength
+      ) {
+        let sum = 0;
+
+        for (let i = 1; i < userRowNumber; i += 2) {
+          for (let j = 0; j < userArrayLength; j += 2) {
+            sum += table[i][j];
+          }
+        }
+
+        return sum;
+      }
+
+      document.write(
+        `Сума чисел в парних рядках та в непарних стовпцях = ${getSumNumbersPairedRowsUnpairedColumnUnpairedRowsPairedColumns(
+          table,
+          userRowNumber,
+          userArrayLength
+        )}<br> `
+      );
+
+      function getSumNumbersUnpairedRowsPairedColumns() {
+        let sum = 0;
+
+        for (let i = 0; i < userRowNumber; i += 2) {
+          for (let j = 1; j < userArrayLength; j += 2) {
+            sum += table[i][j];
+          }
+        }
+        return sum;
+      }
+
+      document.write(
+        `Сума чисел в непарних рядках в парних стовбцях = ${getSumNumbersUnpairedRowsPairedColumns(
+          table,
+          userMinNumber,
+          userArrayLength
+        )}`
+      );
+    </script>
+  </body>
+</html>
