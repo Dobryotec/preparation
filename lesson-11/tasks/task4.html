@@ -73,7 +73,7 @@
         `Прибуток магазинів протягом тижня = <br>${table.join("<br>")}<br>`
       );
 
-      function getSumProfitWorkingDays(table) {
+      function getSumProfitWorkingDays(table, userWorkingDaysNumber) {
         let sum = 0;
 
         for (let i = 0; i < table.length; i++) {
