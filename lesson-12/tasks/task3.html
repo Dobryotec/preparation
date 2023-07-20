@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Task 3</title>
+  </head>
+  <body>
+    <h1>Task 3</h1>
+    <p>
+      Дано масив 30 випадкових цілих чисел. Підрахувати скільки було обмінів під
+      час сортування включеннями.
+    </p>
+    <script>
+      const minNumber = 10;
+      const maxNumber = 100;
+      const quantityNumbers = 30;
+
+      function getArrayRandomNumbers(minNumber, maxNumber, quantityNumbers) {
+        let arr = [];
+
+        for (let i = 0; i < quantityNumbers; i++) {
+          const randomNumber =
+            minNumber + Math.floor(Math.random() * (maxNumber - minNumber) + 1);
+          arr.push(randomNumber);
+        }
+        return arr;
+      }
+
+      const arrayRandomNumbers = getArrayRandomNumbers(
+        minNumber,
+        maxNumber,
+        quantityNumbers
+      );
+
+      function getNumberExchanges(arrayRandomNumbers) {
+        let numberExchanges = 0;
+
+        for (let i = 1; i < arrayRandomNumbers.length; i++) {
+          let currentNumber = arrayRandomNumbers[i];
+          let j = i - 1;
+          while (j >= 0 && arrayRandomNumbers[j] > currentNumber) {
+            arrayRandomNumbers[j + 1] = arrayRandomNumbers[j];
+            j = j - 1;
+          }
+          arrayRandomNumbers[j + 1] = currentNumber;
+          numberExchanges++;
+
+          document.write(
+            `Поточний стан масиву після ${i} обміну: [${arrayRandomNumbers}] <br>`
+          );
+        }
+
+        return numberExchanges;
+      }
+
+      document.write(`Масив чисел до сортування = [${arrayRandomNumbers}]<br>`);
+      document.write(
+        `Кількість обмінів = ${getNumberExchanges(arrayRandomNumbers)}<br>`
+      );
+      document.write(`Масив чисел після сортування = [${arrayRandomNumbers}]`);
+    </script>
+  </body>
+</html>

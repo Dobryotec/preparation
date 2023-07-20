@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Task 1</title>
+  </head>
+  <body>
+    <h1>Task 1</h1>
+    <p>
+      Дано масив 30 випадкових цілих чисел. Підрахувати скільки було обмінів під
+      час сортування бульбашкою
+    </p>
+    <script>
+      const minNumber = 10;
+      const maxNumber = 100;
+      const quantityNumbers = 30;
+
+      function getArrayRandomNumbers(minNumber, maxNumber, quantityNumbers) {
+        let arr = [];
+
+        for (let i = 0; i < quantityNumbers; i++) {
+          const randomNumber =
+            minNumber + Math.floor(Math.random() * (maxNumber - minNumber) + 1);
+          arr.push(randomNumber);
+        }
+        return arr;
+      }
+
+      const arrayRandomNumbers = getArrayRandomNumbers(
+        minNumber,
+        maxNumber,
+        quantityNumbers
+      );
+
+      document.write(
+        `Масив чисел до сортування = [${arrayRandomNumbers}] <br>`
+      );
+
+      function bubbleSort(arrayRandomNumbers) {
+        let numberExchanges = 0;
+        let exchangeNumber = 1;
+        let isSwapped;
+
+        do {
+          isSwapped = false;
+          for (let i = 0; i < arrayRandomNumbers.length - 1; i++) {
+            if (arrayRandomNumbers[i] > arrayRandomNumbers[i + 1]) {
+              const temp = arrayRandomNumbers[i];
+              arrayRandomNumbers[i] = arrayRandomNumbers[i + 1];
+              arrayRandomNumbers[i + 1] = temp;
+              isSwapped = true;
+              numberExchanges++;
+
+              document.write(
+                `Після обміну №${exchangeNumber++}: [${arrayRandomNumbers}] <br>`
+              );
+            }
+          }
+        } while (isSwapped);
+
+        return numberExchanges;
+      }
+
+      document.write(
+        `Кількість обмінів = ${bubbleSort(arrayRandomNumbers)}<br>`
+      );
+      document.write(
+        `Масив чисел після сортування = [${arrayRandomNumbers}] <br>`
+      );
+    </script>
+  </body>
+</html>

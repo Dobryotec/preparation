@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Task 2</title>
+  </head>
+  <body>
+    <h1>Task 2</h1>
+    <p>
+      Дано масив 30 випадкових цілих чисел. Підрахувати скільки було обмінів під
+      час сортування змішуванням.
+    </p>
+    <script>
+      const minNumber = 10;
+      const maxNumber = 100;
+      const quantityNumbers = 30;
+
+      function getArrayRandomNumbers(minNumber, maxNumber, quantityNumbers) {
+        let arr = [];
+
+        for (let i = 0; i < quantityNumbers; i++) {
+          const randomNumber =
+            minNumber + Math.floor(Math.random() * (maxNumber - minNumber) + 1);
+          arr.push(randomNumber);
+        }
+        return arr;
+      }
+
+      const arrayRandomNumbers = getArrayRandomNumbers(
+        minNumber,
+        maxNumber,
+        quantityNumbers
+      );
+
+      let leftIndex = 0;
+      let rightIndex = arrayRandomNumbers.length - 1;
+
+      function swap(A, i, j) {
+        let temp = A[i];
+        A[i] = A[j];
+        A[j] = temp;
+      }
+
+      function getNumberChanges(arrayRandomNumbers, leftIndex, rightIndex) {
+        let numberExchanges = 0;
+        let exchangeNumber = 1;
+
+        while (leftIndex < rightIndex) {
+          let isSwapped = false;
+
+          for (let i = leftIndex; i < rightIndex; i++) {
+            if (arrayRandomNumbers[i] > arrayRandomNumbers[i + 1]) {
+              swap(arrayRandomNumbers, i, i + 1);
+              isSwapped = true;
+              numberExchanges++;
+              document.write(
+                `Після обміну №${exchangeNumber++}: [${arrayRandomNumbers}] <br>`
+              );
+            }
+          }
+          rightIndex--;
+
+          if (!isSwapped) break;
+
+          isSwapped = false;
+
+          for (let i = rightIndex; i > leftIndex; i--) {
+            if (arrayRandomNumbers[i] < arrayRandomNumbers[i - 1]) {
+              swap(arrayRandomNumbers, i, i - 1);
+              isSwapped = true;
+              numberExchanges++;
+              document.write(
+                `Після обміну №${exchangeNumber++}: [${arrayRandomNumbers}] <br>`
+              );
+            }
+          }
+          leftIndex++;
+
+          if (!isSwapped) break;
+        }
+
+        return numberExchanges;
+      }
+
+      document.write(`Масив чисел до сортування = [${arrayRandomNumbers}]<br>`);
+      document.write(
+        `Кількість обмінів = ${getNumberChanges(
+          arrayRandomNumbers,
+          leftIndex,
+          rightIndex
+        )}<br>`
+      );
+      document.write(
+        `Масив чисел після сортування = [${arrayRandomNumbers}]<br>`
+      );
+    </script>
+  </body>
+</html>
