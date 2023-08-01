@@ -21,7 +21,7 @@
 
         for (let i = 0; i < quantityNumbers; i++) {
           const randomNumber =
-            minNumber + Math.floor(Math.random() * (maxNumber - minNumber) + 1);
+            minNumber + Math.floor(Math.random() * (maxNumber - minNumber + 1));
           arr.push(randomNumber);
         }
         return arr;

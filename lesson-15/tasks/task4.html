@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Task 4</title>
+  </head>
+  <body>
+    <h1>Task 4</h1>
+    <p>Розробити клас MultChecker для перевірки таблиці множення</p>
+    <script>
+      class TableMultiplication {
+        constructor(number) {
+          this.number = number;
+          this.numberCorrectAnswers = 0;
+          this.numberWrongAnswers = 0;
+        }
+
+        getRandomNumber() {
+          return 1 + Math.floor(Math.random() * (10 - 1 + 1));
+        }
+
+        checkingCorrectSolution(numberTasks) {
+          for (let i = 0; i < numberTasks; i++) {
+            const randomNumber = this.getRandomNumber();
+            let correctAnswer = this.number * randomNumber;
+            const user = parseInt(
+              prompt(
+                `Яка буде відповідь ${
+                  this.number + " помножити " + randomNumber
+                }`
+              )
+            );
+            if (user === correctAnswer) {
+              alert("You are right");
+              this.numberCorrectAnswers += 1;
+            } else {
+              alert("You are not right");
+              this.numberWrongAnswers += 1;
+            }
+          }
+        }
+
+        render() {
+          console.log(
+            "Загальна кількість правильних відповідей => ",
+            this.numberCorrectAnswers
+          );
+          console.log(
+            "Загальна кількість неправильних відповідей =>",
+            this.numberWrongAnswers
+          );
+        }
+      }
+
+      const table = new TableMultiplication(7);
+      table.checkingCorrectSolution(5);
+      table.render();
+    </script>
+  </body>
+</html>

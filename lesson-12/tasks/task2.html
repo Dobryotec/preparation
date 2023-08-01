@@ -21,7 +21,7 @@
 
         for (let i = 0; i < quantityNumbers; i++) {
           const randomNumber =
-            minNumber + Math.floor(Math.random() * (maxNumber - minNumber) + 1);
+            minNumber + Math.floor(Math.random() * (maxNumber - minNumber + 1));
           arr.push(randomNumber);
         }
         return arr;
@@ -33,9 +33,6 @@
         quantityNumbers
       );
 
-      let leftIndex = 0;
-      let rightIndex = arrayRandomNumbers.length - 1;
-
       function swap(A, i, j) {
         let temp = A[i];
         A[i] = A[j];
@@ -45,6 +42,8 @@
       function getNumberChanges(arrayRandomNumbers, leftIndex, rightIndex) {
         let numberExchanges = 0;
         let exchangeNumber = 1;
+        let leftIndex = 0;
+        let rightIndex = arrayRandomNumbers.length - 1;
 
         while (leftIndex < rightIndex) {
           let isSwapped = false;

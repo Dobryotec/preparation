@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Task 1</title>
+  </head>
+  <body>
+    <h1>Task 1</h1>
+    <p>
+      Описати масив об’єктів – сайтів розроблених компанією з такими
+      властивостями ----- Властивості ------ назва компанії на час розробки
+      (назву періодично змінюють) власник компанії споснсори (масив спонсорів) *
+      прізвище спонсора * ім’я спонсора * сума вкладень спонсора рік випуску
+      вартість сайту. 1) загальну вартість усіх сайтів
+    </p>
+    <script>
+      const nameCompanyFirst = "TrueWorld";
+      const nameCompanySecond = "BeHappy";
+      const nameCompanyThird = "BuildWorld";
+
+      const websites = [
+        {
+          nameCompanyFirst,
+          ownerCompany: "Smith",
+          sponsors: [
+            {
+              lastName: "Taylor",
+              name: "David",
+              investment: 2000,
+            },
+            {
+              lastName: "Williams",
+              name: "Alex",
+              investment: 1000,
+            },
+            {
+              lastName: "Brown",
+              name: "Mark",
+              investment: 4000,
+            },
+          ],
+          releaseYear: 2023,
+          price: 10100,
+        },
+        {
+          nameCompanySecond,
+          ownerCompany: "Jones",
+          sponsors: [
+            {
+              lastName: "Wilson",
+              name: "Alex",
+              investment: 500,
+            },
+            {
+              lastName: "Davies",
+              name: "Richard",
+              investment: 1800,
+            },
+            {
+              lastName: "Evans",
+              name: "John",
+              investment: 2000,
+            },
+          ],
+          releaseYear: 2022,
+          price: 3000,
+        },
+        {
+          nameCompanyThird,
+          ownerCompany: "White",
+          sponsors: [
+            {
+              lastName: "Robinson",
+              name: "Edward",
+              investment: 4000,
+            },
+            {
+              lastName: "Green",
+              name: "Richard",
+              investment: 3500,
+            },
+            {
+              lastName: "Edwards",
+              name: "Peter",
+              investment: 9000,
+            },
+          ],
+          releaseYear: 2008,
+          price: 5000,
+        },
+      ];
+
+      const pricesAllwebsites = websites.reduce(
+        (sum, { price }) => price + sum,
+        0
+      );
+
+      document.write(
+        `Загальну вартість усіх сайтів = ${pricesAllwebsites}$ <br>`
+      );
+
+      const numberWebsitesMadeBetween2000And2009 = websites.reduce(
+        (quantity, { releaseYear }) =>
+          releaseYear > 2000 && releaseYear < 2009 ? quantity + 1 : quantity,
+        0
+      );
+
+      document.write(
+        `Кількість сайтів, що було зроблено між 2000 та 2009 рр. = ${numberWebsitesMadeBetween2000And2009}шт.<br>`
+      );
+
+      const numberWebsitesInvestmentMoreThan10000 = websites.reduce(
+        (quantity, { sponsors }) => {
+          const totalInvestment = sponsors.reduce(
+            (sum, { investment }) => sum + investment,
+            0
+          );
+          return totalInvestment > 10000 ? quantity + 1 : quantity;
+        },
+        0
+      );
+
+      document.write(
+        `Кількість сайтів, де сума спонсорських вкладень була більшою за 10000 = ${numberWebsitesInvestmentMoreThan10000} <br>`
+      );
+
+      // const listSponsors = websites.flatMap((site) => site.sponsors);
+
+      // console.log(listSponsors);
+
+      // const listSponsors = websites.reduce((arraySponsors, site) => {
+      //   site.sponsors.map((sponsor) => arraySponsors.push(sponsor));
+      //   return arraySponsors;
+      // }, []);
+
+      const listSponsors = websites.reduce(
+        (allSponsors, site) => allSponsors.concat(site.sponsors),
+        []
+      );
+
+      console.log("Загальний список спонсорів =>", listSponsors);
+
+      const highestPriceSite = websites.reduce((maxSite, site) => {
+        return site.price > maxSite.price ? site : maxSite;
+      });
+
+      document.write(
+        `Знайти рік, коли прибуток був найбільшим = ${highestPriceSite.releaseYear}р.<br>`
+      );
+
+      const sortWebsites = websites.sort(
+        (siteFirst, siteSecond) => siteSecond.price - siteFirst.price
+      );
+
+      console.log("Список за спаданням прибутку =>", sortWebsites);
+
+      const websitesOver10000 = websites.filter((site) => site.price > 10000);
+      const websitesLess10000 = websites.filter((site) => site.price < 10000);
+
+      console.log("Сайти з вартістю до 10000 =>", websitesLess10000);
+      console.log("Сайти з вартістю більше 10000 =>", websitesOver10000);
+    </script>
+  </body>
+</html>

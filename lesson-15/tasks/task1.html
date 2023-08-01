@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Task 1</title>
+  </head>
+  <body>
+    <h1>Task 1</h1>
+    <p>
+      Дано два об’єкта. Обидва містять масив цілих чисел. При цьому у одному з
+      них є функція знаходження суми, а у іншому – функція для знаходження
+      добутку тих, які знаходяться між заданими мінімальним і максимальних
+      значенням. Використати обидва методи стосовно обидвох об’єктів
+      (використати call, apply)
+    </p>
+    <script>
+      const firstObject = {
+        array: [4, 345, 56, 67, 7],
+        getSum: function () {
+          return this.array.reduce((sum, number) => sum + number, 0);
+        },
+      };
+
+      const secondObject = {
+        array: [4, 654, 6, 9, 2],
+
+        getMultiplication: function (min, max) {
+          let multiplication = 1;
+          for (let i = 0; i < this.array.length; i++) {
+            if (this.array[i] >= min && this.array[i] <= max) {
+              multiplication *= this.array[i];
+            }
+          }
+          return multiplication;
+        },
+      };
+
+      console.log("Перший об'єкт =>", firstObject);
+      console.log("Другий об'єкт =>", secondObject);
+
+      document.write(
+        `Суму всіх чисел першого об'єкту = ${firstObject.getSum()} <br>`
+      );
+
+      document.write(
+        `Добуток чисел другого об'єкту в проміжку = ${secondObject.getMultiplication(
+          4,
+          10
+        )}<br>`
+      );
+      document.write(
+        `Добуток чисел першого об'єкту в проміжку = ${secondObject.getMultiplication.call(
+          firstObject,
+          4,
+          10
+        )}<br>`
+      );
+
+      document.write(
+        `Сума чисел другого масиву = ${firstObject.getSum.apply(secondObject)}`
+      );
+    </script>
+  </body>
+</html>

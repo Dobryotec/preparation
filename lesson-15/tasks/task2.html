@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Task 2</title>
+  </head>
+  <body>
+    <h1>Task 2</h1>
+    <p>
+      Створити об’єкт «Тир». У масиві зберігаються 1, якщо у цьому квадраті є
+      заєць і 0 в іншому випадку.
+    </p>
+    <script>
+      const numberCells = parseInt(
+        prompt("Введіть,будь ласка,кількість комірок", 5)
+      );
+
+      class MyGame {
+        constructor(numberCells) {
+          this.numberCells = numberCells;
+          this.array = this.generateGameFiled();
+        }
+
+        generateGameFiled() {
+          let gameField = [];
+          for (let i = 0; i < this.numberCells; i++) {
+            let randomIndex = 0 + Math.floor(Math.random() * (1 - 0 + 1));
+            gameField.push(randomIndex);
+          }
+          return gameField;
+        }
+
+        shot() {
+          const position = parseInt(
+            prompt(
+              `Введіть, будь ласка, номер комірки до ${this.numberCells} включно`,
+              2
+            )
+          );
+          if (this.numberCells < position) {
+            alert("Такої комірки не має");
+          } else if (this.array[position - 1] === 1) {
+            alert("Вітаємо, Ви попали в зайця");
+          } else {
+            alert("Нам шкода, але Ви не попали в зайця(");
+          }
+        }
+
+        run() {
+          do {
+            this.shot();
+          } while (confirm("Бажаєте продовжити гру?"));
+        }
+      }
+
+      let player = new MyGame(numberCells);
+
+      console.log(player.array);
+      player.run();
+    </script>
+  </body>
+</html>
