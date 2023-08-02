@@ -17,30 +17,24 @@
       );
 
       class MyGame {
-        constructor(numberCells) {
+        constructor(numberCells, minIndex, maxIndex) {
           this.numberCells = numberCells;
-          this.array = this.generateGameFiled();
+          this.arrayCells = this.generateGameFiled();
         }
 
         generateGameFiled() {
           let gameField = [];
           for (let i = 0; i < this.numberCells; i++) {
-            let randomIndex = 0 + Math.floor(Math.random() * (1 - 0 + 1));
+            let randomIndex = Math.floor(Math.random() * 2);
             gameField.push(randomIndex);
           }
           return gameField;
         }
 
-        shot() {
-          const position = parseInt(
-            prompt(
-              `Введіть, будь ласка, номер комірки до ${this.numberCells} включно`,
-              2
-            )
-          );
+        shot(position) {
           if (this.numberCells < position) {
-            alert("Такої комірки не має");
-          } else if (this.array[position - 1] === 1) {
+            throw new Error("Такої комірки не існує");
+          } else if (this.arrayCells[position - 1] === 1) {
             alert("Вітаємо, Ви попали в зайця");
           } else {
             alert("Нам шкода, але Ви не попали в зайця(");
@@ -49,14 +43,20 @@
 
         run() {
           do {
-            this.shot();
+            const position = parseInt(
+              prompt(
+                `Введіть, будь ласка, номер комірки до ${this.numberCells} включно`,
+                2
+              )
+            );
+            this.shot(position);
           } while (confirm("Бажаєте продовжити гру?"));
         }
       }
 
       let player = new MyGame(numberCells);
 
-      console.log(player.array);
+      console.log("Масив комірок =>", player.arrayCells);
       player.run();
     </script>
   </body>

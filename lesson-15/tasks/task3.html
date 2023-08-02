@@ -26,7 +26,7 @@
 
         carRefueling(petrolAmount) {
           if (this.tankSize < petrolAmount + this.numberLiters) {
-            throw new Error("Unfortunately yhe tank is too small");
+            throw new Error("Unfortunately the tank is too small");
           } else return (this.numberLiters += petrolAmount);
         }
 

@@ -9,29 +9,49 @@
     <h1>Task 4</h1>
     <p>Розробити клас MultChecker для перевірки таблиці множення</p>
     <script>
+      const tableNumber = parseInt(
+        prompt(
+          "Введіть, будь ласка, на яку цифру хочете попрактикувати таблицю множення?",
+          6
+        )
+      );
+      const numberEquations = parseInt(
+        prompt("Введіть, будь ласка, кількість рівнянь", 5)
+      );
+
+      const minNumber = 1;
+      const maxNumber = 10;
+
       class TableMultiplication {
-        constructor(number) {
+        constructor(number, minNumber, maxNumber) {
           this.number = number;
           this.numberCorrectAnswers = 0;
           this.numberWrongAnswers = 0;
+          this.randomNumber = 0;
         }
 
-        getRandomNumber() {
-          return 1 + Math.floor(Math.random() * (10 - 1 + 1));
+        getRandomEquation() {
+          this.randomNumber =
+            minNumber +
+            Math.floor(Math.random() * (maxNumber - minNumber + minNumber));
+          return this.number * this.randomNumber;
+        }
+
+        getUserResponse() {
+          return parseInt(
+            prompt(
+              `Яка буде відповідь ${
+                this.number + " помножити " + this.randomNumber
+              }`
+            )
+          );
         }
 
         checkingCorrectSolution(numberTasks) {
           for (let i = 0; i < numberTasks; i++) {
-            const randomNumber = this.getRandomNumber();
-            let correctAnswer = this.number * randomNumber;
-            const user = parseInt(
-              prompt(
-                `Яка буде відповідь ${
-                  this.number + " помножити " + randomNumber
-                }`
-              )
-            );
-            if (user === correctAnswer) {
+            const correctAnswer = this.getRandomEquation();
+            const userAnswer = this.getUserResponse();
+            if (userAnswer === correctAnswer) {
               alert("You are right");
               this.numberCorrectAnswers += 1;
             } else {
@@ -53,8 +73,8 @@
         }
       }
 
-      const table = new TableMultiplication(7);
-      table.checkingCorrectSolution(5);
+      const table = new TableMultiplication(tableNumber, minNumber, maxNumber);
+      table.checkingCorrectSolution(numberEquations);
       table.render();
     </script>
   </body>
