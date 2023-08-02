@@ -155,8 +155,12 @@
 
       console.log("Список за спаданням прибутку =>", sortWebsites);
 
-      const websitesOver10000 = websites.filter((site) => site.price > 10000);
-      const websitesLess10000 = websites.filter((site) => site.price < 10000);
+      const websitesOver10000 = websites
+        .filter((site) => site.price > 10000)
+        .map((site) => JSON.parse(JSON.stringify(site)));
+      const websitesLess10000 = websites
+        .filter((site) => site.price < 10000)
+        .map((site) => JSON.parse(JSON.stringify(site)));
 
       console.log("Сайти з вартістю до 10000 =>", websitesLess10000);
       console.log("Сайти з вартістю більше 10000 =>", websitesOver10000);
