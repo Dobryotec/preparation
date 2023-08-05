@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Task 2</title>
+  </head>
+  <body>
+    <h1>Task 2</h1>
+    <p>
+      Створити клас TMoney для роботи з грошовими сумами. Сума повинна
+      зберігатися у вигляді доларового еквіваленту. Реалізувати методи
+      додавання/вилучення грошової маси, вказуючи необхідну суму у гривнях, та
+      визначення курсу долара, при якому сума у гривнях збільшиться на 100. Курс
+      долара зберігати в окремому полі.
+    </p>
+    <script>
+      class TMoney {
+        #dollarBalance;
+        constructor(balanceUAH, dollarRate) {
+          this.BalanceUAH = balanceUAH;
+          this.#dollarBalance = balanceUAH / dollarRate;
+          this.dollarRate = dollarRate;
+        }
+
+        get BalanceUAH() {
+          return this.#dollarBalance * this.dollarRate;
+        }
+
+        set BalanceUAH(sumUAH) {
+          if (sumUAH < 0) throw new Error("Initial sum cannot be < 0");
+
+          this.#dollarBalance = sumUAH / this.dollarRate;
+        }
+
+        replenishmentAccount(sumUAH) {
+          if (sumUAH < 0) throw newError("Replenishment amount must be > 0");
+          this.BalanceUAH += sumUAH;
+        }
+
+        withdrawAmount(sumUAH) {
+          if (sumUAH < 0) throw new Error("Withdrawal amount must be > 0");
+
+          if (sumUAH > this.Balance)
+            throw new Error("There is not enough money in the account");
+
+          this.BalanceUAH -= sumUAH;
+        }
+
+        getTarget100Rate() {
+          return (this.BalanceUAH + 100) / this.#dollarBalance;
+        }
+
+        toString() {
+          return ` The account balance = ${this.#dollarBalance.toFixed(
+            2
+          )}$<br>`;
+        }
+      }
+
+      const account = new TMoney(100, 36);
+
+      document.write(account);
+      account.replenishmentAccount(100);
+      document.write(account);
+      account.withdrawAmount(50);
+      document.write(account);
+    </script>
+  </body>
+</html>

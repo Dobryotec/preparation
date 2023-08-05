@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Task 3</title>
+  </head>
+  <body>
+    <h1>Task 3</h1>
+    <p1>Об’єкт “Фірма” (використати члени-класи)</p1>
+    <script>
+      class Service {
+        constructor(name, price, deadline) {
+          this.name = name;
+          this.price = price;
+          this.deadline = deadline;
+        }
+      }
+
+      class Address {
+        constructor(country, city, street, numberHome) {
+          this.country = country;
+          this.city = city;
+          this.street = street;
+          this.numberHome = numberHome;
+        }
+      }
+
+      const services = [
+        new Service("Cleaning", 250, 5),
+        new Service("Deliver", 200, 3),
+        new Service("Cook", 100, 1),
+      ];
+
+      const addresses = [
+        new Address("Ukraine", "Lviv", "Peremohy", 5),
+        new Address("England", "Manchester", "Lupus", 3),
+        new Address("England", "Manchester", "Surey", 15),
+        new Address("Czech Republic", "Praha", "Malostranska", 10),
+      ];
+
+      class Company {
+        constructor(title, dateFoundation, services, addresses) {
+          this.title = title;
+          this.dateFoundation = dateFoundation;
+          this.services = services;
+          this.addresses = addresses;
+        }
+
+        getNumberYearsCompanyExistence() {
+          return new Date().getFullYear() - this.dateFoundation;
+        }
+
+        getListBranches(city) {
+          return addresses.filter((branch) => branch.city === city);
+        }
+
+        getServicesSpecifiedMoneyAndPeriod(price, deadline) {
+          return services.filter(
+            (service) => service.price >= price && service.deadline <= deadline
+          );
+        }
+
+        toString(city, price, deadline) {
+          const branchesString = this.getListBranches(city)
+            .map(
+              (branch) =>
+                `Street: ${branch.street}, House: ${branch.numberHome}`
+            )
+            .join("<br>");
+
+          const servicesString = this.getServicesSpecifiedMoneyAndPeriod(
+            price,
+            deadline
+          ).map((service) => `Name: ${service.name}`);
+
+          return `Years of existence: ${this.getNumberYearsCompanyExistence()}<br>
+                  All branches of the company in the ${city} = ${branchesString} <br>
+                  Services that provides services for ${price}$ and does it in ${deadline} days : ${servicesString}`;
+        }
+      }
+
+      const company = new Company("Firma", 2013, services, addresses);
+
+      console.log(company);
+      document.write("<br>");
+      document.write(company.toString("Manchester", 100, 5));
+    </script>
+  </body>
+</html>

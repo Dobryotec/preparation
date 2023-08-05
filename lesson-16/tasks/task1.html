@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Task 1</title>
+  </head>
+  <body>
+    <h1>Task 1</h1>
+    <p>
+      Створити клас TDate для роботи із датами у форматі “день.місяць.рік”. Дата
+      представляється структурою із трьома полями. Реалізувати методи
+      збільшення/зменшення дати на певну кількість днів, місяців чи років.
+      Введення та виведення дати реалізувати за допомогою методу toString.
+    </p>
+    <script>
+      class TDate {
+        #day;
+        #month;
+        #year;
+
+        constructor(day, month, year) {
+          this.Day = day;
+          this.Month = month;
+          this.Year = year;
+        }
+
+        get Day() {
+          return this.#day;
+        }
+
+        set Day(newValue) {
+          if (newValue < 0) throw new Error("Day value cannot be negative");
+          this.#day = newValue;
+        }
+
+        addDay(days) {
+          if (days < 0) throw new Error("Days value cannot be negative");
+          this.Day += days;
+
+          while (this.Day > this.daysInMonth(this.Month, this.Year)) {
+            this.Day -= this.daysInMonth(this.Month, this.Year);
+            this.addMonth(1);
+          }
+        }
+
+        subtractDay(days) {
+          if (days < 0) throw new Error("Days value cannot be negative");
+          this.Day -= days;
+
+          while (this.Day <= 0) {
+            this.subtractMonth(1);
+            this.Day += this.daysInMonth(this.Month, this.Year);
+          }
+        }
+
+        get Month() {
+          return this.#month;
+        }
+
+        set Month(newValue) {
+          if (newValue <= 0)
+            throw new Error("Month value should be between 1 and 12");
+          this.#month = newValue;
+        }
+
+        addMonth(month) {
+          if (month <= 0) throw new Error("Month value cannot be <= 0");
+          this.Month += month;
+
+          while (this.Month > 12) {
+            this.Month -= 12;
+            this.addYear(1);
+          }
+        }
+
+        subtractMonth(months) {
+          if (months < 0) throw new Error("Month value cannot be negative");
+          this.Month -= months;
+
+          while (this.Month <= 0) {
+            this.subtractYear(1);
+            this.Month += 12;
+          }
+        }
+
+        get Year() {
+          return this.#year;
+        }
+
+        set Year(newValue) {
+          return (this.#year = newValue);
+        }
+
+        addYear(year) {
+          if (year < 0) throw new Error("Year value cannot be negative");
+          return (this.Year += year);
+        }
+
+        subtractYear(years) {
+          if (years < 0) throw new Error("Year value cannot be negative");
+          this.Year -= years;
+        }
+
+        daysInMonth(month, year) {
+          const daysInMonths = [
+            0, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31,
+          ];
+
+          if (month === 2 && this.isLeapYear(year)) {
+            return 29;
+          } else {
+            return daysInMonths[month];
+          }
+        }
+
+        isLeapYear(year) {
+          return (year % 4 === 0 && year % 100 !== 0) || year % 400 === 0;
+        }
+
+        toString() {
+          return `${this.Day} - ${this.Month} - ${this.Year}<br>`;
+        }
+      }
+
+      const date = new TDate(20, 8, 2023);
+      console.log(date);
+      date.addDay(30);
+      console.log(date);
+      date.addMonth(5);
+      console.log(date);
+      document.write(date);
+    </script>
+  </body>
+</html>

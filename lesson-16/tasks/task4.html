@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Task 4</title>
+  </head>
+  <body>
+    <h1>Task 4</h1>
+    <p>
+      Створити клас TBankomat, який моделює роботу банкомата. Клас повинен
+      містити поля для зберігання кількості купюр кожного із номіналів від 5 до
+      200 гривень. Реалізувати методи знаходження максимальної та мінімальної
+      сум, які може видати банкомат, та метод зняття деякої суми.
+    </p>
+    <script>
+      const banknotes = {
+        5: 0,
+        10: 0,
+        20: 0,
+        50: 0,
+        100: 0,
+        200: 0,
+      };
+
+      class TBankomat {
+        constructor(banknotes) {
+          this.banknotes = banknotes;
+        }
+
+        replenishmentAccount(denomination, count) {
+          if (this.banknotes.hasOwnProperty(denomination)) {
+            this.banknotes[denomination] += count;
+          }
+        }
+
+        getMaxWithdrawalAmount() {
+          let maxAmount = 0;
+          for (const denomination in this.banknotes) {
+            maxAmount += denomination * this.banknotes[denomination];
+          }
+          return maxAmount;
+        }
+
+        getMinWithdrawalAmount() {
+          let minDenomination = Infinity;
+          for (const denomination in this.banknotes) {
+            if (
+              this.banknotes[denomination] > 0 &&
+              denomination < minDenomination
+            ) {
+              minDenomination = denomination;
+            }
+          }
+
+          return minDenomination === Infinity
+            ? "No available banknotes"
+            : minDenomination;
+        }
+
+        withrawAmount(amount) {
+          if (amount <= 0) throw new Error("Amount must be greater than 0");
+
+          const maxWithdrawal = this.getMaxWithdrawalAmount();
+
+          if (amount > maxWithdrawal)
+            throw new Error("Not enough funds in the ATM");
+
+          const minWithdrawal = this.getMinWithdrawalAmount();
+
+          const withdrawnBanknotes = {};
+          for (const denomination in this.banknotes) {
+            const availableNotes = this.banknotes[denomination];
+            const needeNotes = Math.floor(amount / denomination);
+
+            const actualWithdrawl = Math.min(availableNotes, needeNotes);
+            if (actualWithdrawl > 0) {
+              this.banknotes[denomination] -= actualWithdrawl;
+              withdrawnBanknotes[denomination] = actualWithdrawl;
+              amount -= actualWithdrawl * denomination;
+            }
+
+            if (amount === 0) break;
+          }
+
+          return withdrawnBanknotes;
+        }
+
+        toString() {
+          return `Amount of money in the account =  ${this.getMaxWithdrawalAmount()}$<br>
+                  The minimum amount that can be withdrawn = ${this.getMinWithdrawalAmount()}$<br>`;
+        }
+      }
+      const bankomat = new TBankomat(banknotes);
+
+      document.write(bankomat);
+
+      bankomat.replenishmentAccount(20, 5);
+      document.write(bankomat);
+      bankomat.withrawAmount(20);
+      document.write(bankomat);
+      bankomat.getMinWithdrawalAmount();
+    </script>
+  </body>
+</html>
