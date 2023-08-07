@@ -23,17 +23,16 @@
       const maxNumber = 10;
 
       class TableMultiplication {
-        constructor(number, minNumber, maxNumber) {
+        constructor(number) {
           this.number = number;
           this.numberCorrectAnswers = 0;
           this.numberWrongAnswers = 0;
           this.randomNumber = 0;
         }
 
-        getRandomEquation() {
+        getRandomEquation(minNumber, maxNumber) {
           this.randomNumber =
-            minNumber +
-            Math.floor(Math.random() * (maxNumber - minNumber + minNumber));
+            minNumber + Math.floor(Math.random() * (maxNumber - minNumber + 1));
           return this.number * this.randomNumber;
         }
 

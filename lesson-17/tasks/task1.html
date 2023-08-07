@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Task 1</title>
+  </head>
+  <body>
+    <h1>Task 1</h1>
+    <p>
+      Створити клас, що дозволяє виконувати такі операції над масивами:
+      знаходження кількості додатних, кількості від’ємних, кількість входжень
+      деякого числа (статичні методи)
+    </p>
+    <script>
+      const arrayNumbers = [5, 6, 3, 12, 34, -43, -23, 33, -55, 25, 3, 12, 12];
+
+      class Operations {
+        static array = arrayNumbers;
+
+        static getCountPositiveNumbers() {
+          return Operations.array.reduce(
+            (count, number) => (number > 0 ? count + 1 : count),
+            0
+          );
+        }
+
+        static getCountNegativeNumbers() {
+          return Operations.array.reduce(
+            (count, number) => (number < 0 ? count + 1 : count),
+            0
+          );
+        }
+
+        static getCountRepeatedNumbers(numberSearch) {
+          return Operations.array.reduce(
+            (count, number) => (number === numberSearch ? count + 1 : count),
+            0
+          );
+        }
+      }
+      console.log("Масив чисел =>", Operations.array);
+      console.log(
+        "Кількість позитивних чисел =>",
+        Operations.getCountPositiveNumbers()
+      );
+      console.log(
+        "Кількість від'ємних чисел =>",
+        Operations.getCountNegativeNumbers()
+      );
+      console.log(
+        "Кількість повторювань =>",
+        Operations.getCountRepeatedNumbers(12)
+      );
+    </script>
+  </body>
+</html>

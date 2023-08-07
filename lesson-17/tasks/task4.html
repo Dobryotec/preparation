@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Task 4</title>
+  </head>
+  <body>
+    <h1>Task 4</h1>
+    <p>
+      Особиста бібліотека. Картотека домашньої бібліотеки: дані книги (автори
+      (піб, рік народження, короткий опис), назва книги, жанр, видавництво
+      (назва, реєстраційний номер, рік засування)). Реалізувати розділи
+      бібліотеки організувати додавання/вилучення книг та вибір книг за назвою,
+      за ПІБ автора, за видавництвом.
+    </p>
+    <script>
+      class Author {
+        constructor(fullName, birthYear, description) {
+          this.fullName = fullName;
+          this.birthYear = birthYear;
+          this.description = description;
+        }
+      }
+
+      class Publisher {
+        constructor(name, registrationNumber, establishmentYear) {
+          this.name = name;
+          this.registrationNumber = registrationNumber;
+          this.establishmentYear = establishmentYear;
+        }
+      }
+
+      class Book {
+        constructor(author, title, genre, publisher) {
+          this.author = author;
+          this.title = title;
+          this.genre = genre;
+          this.publisher = publisher;
+        }
+      }
+
+      class Library {
+        constructor() {
+          this.books = [];
+        }
+
+        addBook(book) {
+          const newBook = book;
+          this.books.push(newBook);
+          return newBook;
+        }
+
+        removeBook({ title }) {
+          const removedBook = this.books.find((book) => book.title === title);
+
+          if (removedBook) {
+            this.books = this.books.filter((book) => book.title !== title);
+          } else {
+            throw new Error("Така книга не знайдена");
+          }
+
+          return removedBook;
+        }
+
+        searchByTitle(title) {
+          const searchBook = this.books.find((book) => book.title === title);
+
+          if (searchBook) return searchBook;
+          else throw new Error("Книга з таким автором не знайдена");
+        }
+
+        searchByFullname(fullname) {
+          const searchBook = this.books.find(
+            ({ author: { fullName } }) => fullName === fullname
+          );
+
+          if (searchBook) return searchBook;
+          else throw new Error("Книга з таким автором не знайдена");
+        }
+
+        searchByPublisherName(publisherName) {
+          const searchBook = this.books.find(
+            ({ publisher: { name } }) => name === publisherName
+          );
+
+          if (searchBook) return searchBook;
+          else throw new Error("Книга з таким видавництвом не знайдена");
+        }
+      }
+
+      const library = new Library();
+
+      const authorFirst = new Author(
+        "Armando Lucas Correa",
+        1960,
+        "Armando Lucas Correa is an award-winning journalist, editor, author, and the recipient of several awards from the National Association of Hispanic Publications and the Society of Professional Journalism. He is the author of the international bestseller The German Girl, which is now being published in thirteen languages, The Sister’s Tale, and The Night Traveler. He lives in New York City with his partner and their three children. Visit ArmandoLucasCorrea.com."
+      );
+      const publisherFirst = new Publisher("BarnesAndNoble", "AWE22334", 1940);
+      const bookFirst = new Book(
+        authorFirst,
+        "The Daughter's Tale",
+        "Historical",
+        publisherFirst
+      );
+
+      const authorSecond = new Author(
+        "Jess Kidd",
+        1970,
+        "Jess Kidd was brought up in London as part of a large family from county Mayo and has been praised for her unique fictional voice. Her debut, Himself, was shortlisted for the Irish Book Awards in 2016. She won the Costa Short Story Award the same year. Her second novel, The Hoarder, published as Mr. Flood's Last Resort in the U.S. and Canada was shortlisted for the Kerry Group Irish Novel of the Year 2019."
+      );
+
+      const publisherSecond = new Publisher("BooksAMillion", "BEE26356", 1950);
+      const bookSecond = new Book(
+        authorSecond,
+        "Himself",
+        "Mystery",
+        publisherSecond
+      );
+
+      console.log("Книга додана, вітаю =>", library.addBook(bookFirst));
+      console.log("Бібліотека =>", library.books);
+      console.log("Книга видалена =>", library.removeBook(bookFirst));
+      console.log("Бібліотека =>", library.books);
+      console.log("Книга додана, вітаю =>", library.addBook(bookSecond));
+      console.log("Бібліотека =>", library.books);
+      console.log(
+        "Книга, яку шукаємо по назві =>",
+        library.searchByTitle("Himself")
+      );
+      console.log("Книга додана =>", library.addBook(bookFirst));
+      console.log("Бібліотека =>", library.books);
+      console.log(
+        "Книга, яку шукаємо по ПІБ автора",
+        library.searchByFullname("Jess Kidd")
+      );
+      console.log(
+        "Книга, яку шукаємо по видавництву =>",
+        library.searchByPublisherName("BarnesAndNoble")
+      );
+    </script>
+  </body>
+</html>

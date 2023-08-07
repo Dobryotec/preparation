@@ -20,18 +20,24 @@
 
       const userMonths = parseInt(
         prompt(
-          "Введіть, будь ласка, через скільки місяців хочете дізнатись, який буде місяць?",
+          "Введіть, будь ласка, через скільки місяців хочете дізнатись, який буде рік?",
           5
         )
       );
 
-      function getNextMonth({ month }, userMonths) {
-        return ((month - 1 + userMonths) % 12) + 1;
+      function getNextMonth({ month, year }, userMonths) {
+        const totalMonths = month - 1 + userMonths;
+        const futureYear = year + Math.floor(totalMonths / 12);
+        const futureMonth = (totalMonths % 12) + 1;
+
+        return { year: futureYear, month: futureMonth };
       }
 
-      const searchedMonth = getNextMonth(obj, userMonths);
+      const searchedDate = getNextMonth(obj, userMonths);
 
-      document.write(`Буде ${searchedMonth} місяць`);
+      document.write(
+        `Буде ${searchedDate.month} місяць ${searchedDate.year} року`
+      );
     </script>
   </body>
 </html>
