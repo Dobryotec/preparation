@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Task 5</title>
+  </head>
+  <body>
+    <h1>Task 5</h1>
+    <p>
+      Користувач задає кількість рядків і стовпців. Відобразити таблицю, у
+      клітинках якої знаходяться числа 1, 2, 3, …
+    </p>
+    <style>
+      table {
+        border-collapse: collapse;
+        width: 100%;
+        border: 1px solid #ccc;
+      }
+
+      td {
+        border: 1px solid #ccc;
+        padding: 8px;
+        text-align: center;
+      }
+
+      tr:nth-child(odd) td {
+        background-color: #f7f7f7;
+      }
+
+      tr:nth-child(even) td {
+        background-color: #ffffff;
+      }
+    </style>
+    <script>
+      function createInput(textLabel, id) {
+        const div = document.createElement("div");
+
+        const label = document.createElement("label");
+        label.textContent = textLabel;
+
+        const input = document.createElement("input");
+        input.setAttribute("type", "number");
+        input.setAttribute("id", id);
+        input.setAttribute("value", "");
+
+        label.append(input);
+        div.append(label);
+
+        document.body.append(div);
+      }
+
+      createInput("Введіть, будь ласка, кількість рядків", "inputFirst");
+      createInput("Введіть, будь ласка, кількість стовпців", "inputSecond");
+
+      function createButton(textButton, id) {
+        const button = document.createElement("button");
+        button.textContent = textButton;
+        button.setAttribute("type", "button");
+        button.setAttribute("id", id);
+
+        document.body.append(button);
+      }
+
+      createButton("Згенерувати таблицю", "btnFirst");
+
+      function getInputValues() {
+        const quantityRows = parseInt(document.getElementById("inputFirst").value);
+        const quantityColumns = parseInt(document.getElementById("inputSecond").value);
+
+        return {
+          quantityRows,
+          quantityColumns,
+        };
+      }
+
+      function generateTable() {
+        const { quantityColumns, quantityRows } = getInputValues();
+
+        const table = document.createElement("table");
+
+        for (let i = 0; i < quantityRows; i += 1) {
+          const tr = document.createElement("tr");
+
+          for (let j = 1; j <= quantityColumns; j += 1) {
+            const td = document.createElement("td");
+            td.textContent = j + i * quantityColumns;
+
+            tr.append(td);
+          }
+
+          table.append(tr);
+        }
+
+        document.body.append(table);
+      }
+
+      window.onload = function () {
+        document.getElementById("btnFirst").onclick = generateTable;
+      };
+    </script>
+  </body>
+</html>

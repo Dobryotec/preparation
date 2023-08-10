@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Task 1</title>
+  </head>
+  <body>
+    <h1>Task 1</h1>
+    <p>Розробити калькулятор</p>
+    <script>
+      function createInput(labelName, id) {
+        const div = document.createElement("div");
+        const label = document.createElement("label");
+
+        label.textContent = labelName;
+        const input = document.createElement("input");
+        input.setAttribute("type", "number");
+        input.setAttribute("value", "");
+        input.setAttribute("id", id);
+        label.append(input);
+
+        div.append(label);
+        document.body.append(div);
+      }
+
+      createInput("First number", "first");
+      createInput("Second number", "second");
+
+      const div = document.createElement("div");
+      document.body.append(div);
+
+      function createButton(textButton, idButton) {
+        const button = document.createElement("button");
+        button.textContent = textButton;
+        button.setAttribute("type", "button");
+        button.setAttribute("id", idButton);
+        div.append(button);
+
+        div.append(button);
+      }
+
+      createButton("Додати", "btnFirst");
+      createButton("Відняти", "btnSecond");
+      createButton("Помножити", "btnThird");
+      createButton("Поділити", "btnFourth");
+      createInput("Result", "third");
+
+      function getInputValues() {
+        const numFirst = parseFloat(document.getElementById("first").value);
+        const numSecond = parseFloat(document.getElementById("second").value);
+
+        return {
+          numFirst,
+          numSecond,
+        };
+      }
+
+      function getSum() {
+        const { numFirst, numSecond } = getInputValues();
+        const sum = numFirst + numSecond;
+        document.getElementById("third").value = sum;
+      }
+
+      function getDiff() {
+        const { numFirst, numSecond } = getInputValues();
+        const diff = numFirst - numSecond;
+        document.getElementById("third").value = diff;
+      }
+
+      function getMulti() {
+        const { numFirst, numSecond } = getInputValues();
+        const multi = numFirst * numSecond;
+        document.getElementById("third").value = multi;
+      }
+
+      function getDiv() {
+        const { numFirst, numSecond } = getInputValues();
+        const div = numFirst / numSecond;
+        document.getElementById("third").value = div;
+      }
+
+      window.onload = function () {
+        document.getElementById("btnFirst").onclick = getSum;
+        document.getElementById("btnSecond").onclick = getDiff;
+        document.getElementById("btnThird").onclick = getMulti;
+        document.getElementById("btnFourth").onclick = getDiv;
+      };
+    </script>
+  </body>
+</html>

@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Task 7</title>
+  </head>
+  <body>
+    <h1>Task 7</h1>
+    <p>
+      Подорож складається з 3 етапів. На кожному етапі користувач може вибрати
+      один з видів транспорту (авто, автобус, літак - випадаючий список),
+      харчування (сніданок, обід, вечеря – checkbоx) та одного з 3-х
+      гідів(використати - radio buttons). Ціни визначте самі. Підрахувати
+      загальну вартість.
+    </p>
+    <script>
+      function getSum() {
+        let total = 0;
+
+        const priceModeTransport = parseFloat(
+          document.getElementById("modeTransport").value
+        );
+        const priceModeTransportSecond = parseFloat(
+          document.getElementById("modeTransportSecond").value
+        );
+        const priceModeTransportThird = parseFloat(
+          document.getElementById("modeTransportThird").value
+        );
+
+        const inputList = document.querySelectorAll("input");
+
+        for (const input of inputList) {
+          if (input.checked) total += parseFloat(input.value);
+        }
+
+        const p = document.createElement("p");
+        p.textContent = `Загальна вартість = ${
+          total +
+          priceModeTransport +
+          priceModeTransportSecond +
+          priceModeTransportThird
+        }`;
+
+        document.body.append(p);
+      }
+
+      window.onload = function () {
+        document.getElementById("btnFirst").onclick = getSum;
+      };
+    </script>
+    <div id="blocks">
+      <div id="blockSecond">
+        <label>
+          Вид транспорту
+          <select id="modeTransport">
+            <option value="500">Авто</option>
+            <option value="350">Автобус</option>
+            <option value="700">Літак</option>
+          </select>
+        </label>
+      </div>
+      <div>
+        Харчування:
+        <label>
+          Сніданок
+          <input type="checkbox" name="food" value="50" />
+        </label>
+        <label>
+          Обід
+          <input type="checkbox" name="food" value="150" />
+        </label>
+        <label>
+          Вечеря
+          <input type="checkbox" name="food" value="200" />
+        </label>
+      </div>
+      <div>
+        Гід:
+        <label>
+          Гід №1
+          <input type="radio" name="guide" value="300" />
+        </label>
+        <label>
+          Гід №2
+          <input type="radio" name="guide" value="200" />
+        </label>
+        <label>
+          Гід №3
+          <input type="radio" name="guide" value="150" />
+        </label>
+      </div>
+      <div id="blockThird">
+        <label>
+          Вид транспорту
+          <select id="modeTransportSecond">
+            <option value="500">Авто</option>
+            <option value="350">Автобус</option>
+            <option value="700">Літак</option>
+          </select>
+        </label>
+      </div>
+      <div>
+        Харчування:
+        <label>
+          Сніданок
+          <input type="checkbox" name="foodSecond" value="50" />
+        </label>
+        <label>
+          Обід
+          <input type="checkbox" name="foodSecond" value="150" />
+        </label>
+        <label>
+          Вечеря
+          <input type="checkbox" name="foodSecond" value="200" />
+        </label>
+      </div>
+      <div>
+        Гід:
+        <label>
+          Гід №1
+          <input type="radio" name="guideSecond" value="300" />
+        </label>
+        <label>
+          Гід №2
+          <input type="radio" name="guideSecond" value="200" />
+        </label>
+        <label>
+          Гід №3
+          <input type="radio" name="guideSecond" value="150" />
+        </label>
+      </div>
+    </div>
+    <div id="blockFirst">
+      <label>
+        Вид транспорту
+        <select id="modeTransportThird">
+          <option value="500">Авто</option>
+          <option value="350">Автобус</option>
+          <option value="700">Літак</option>
+        </select>
+      </label>
+    </div>
+    <div>
+      Харчування:
+      <label>
+        Сніданок
+        <input type="checkbox" name="foodThird" value="50" />
+      </label>
+      <label>
+        Обід
+        <input type="checkbox" name="foodThird" value="150" />
+      </label>
+      <label>
+        Вечеря
+        <input type="checkbox" name="foodThird" value="200" />
+      </label>
+    </div>
+    <div>
+      Гід:
+      <label>
+        Гід №1
+        <input type="radio" name="guideThird" value="300" />
+      </label>
+      <label>
+        Гід №2
+        <input type="radio" name="guideThird" value="200" />
+      </label>
+      <label>
+        Гід №3
+        <input type="radio" name="guideThird" value="150" />
+      </label>
+    </div>
+    <button type="button" id="btnFirst">Підрахувати загальну вартість</button>
+  </body>
+</html>
