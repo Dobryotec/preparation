@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Task 6</title>
+  </head>
+  <body>
+    <h1>Task 6</h1>
+    <p>
+      Дано список спортсменів. Потрібно сформувати список тих, які будуть брати
+      участь у змаганні. При цьому є два стовпці. В одному відображені всі
+      спортсмени, в іншому – список тих, хто був вибраний. При натисканні на
+      зелену стрілку спортсмен переміщається у список для змагань. При
+      натисканні на червону стрілку спортсмен переміщається у загальний список.
+    </p>
+
+    <style>
+      .item {
+        position: relative;
+      }
+      li {
+        list-style: none;
+      }
+
+      .image {
+        position: absolute;
+        width: 24px;
+        height: 24px;
+        top: -2px;
+        left: 50px;
+        cursor: pointer;
+      }
+    </style>
+    <div>
+      <div>
+        <h2>Загальний список</h2>
+        <ul class="list-common">
+          <li class="item">
+            Peter
+            <img
+              src="../tasks/img/right-arrow.svg"
+              class="image"
+              data-action="add"
+            />
+          </li>
+          <li class="item">
+            David
+            <img
+              src="../tasks/img/right-arrow.svg"
+              class="image"
+              data-action="add"
+            />
+          </li>
+          <li class="item">
+            Mark
+            <img
+              src="../tasks/img/right-arrow.svg"
+              class="image"
+              data-action="add"
+            />
+          </li>
+        </ul>
+      </div>
+
+      <div>
+        <h2>Обрані для змагання</h2>
+        <ul class="list-competition"></ul>
+      </div>
+    </div>
+
+    <script>
+      function togglePlayer(event) {
+        const clickedItem = event.currentTarget.closest(".item");
+        const action = event.currentTarget.getAttribute("data-action");
+        const list = document.querySelector(".list-competition");
+        const sourceList = document.querySelector(".list-common");
+
+        if (action === "add") {
+          list.append(clickedItem);
+          event.currentTarget.setAttribute("data-action", "remove");
+          event.currentTarget.setAttribute(
+            "src",
+            "../tasks/img/left-arrow.svg"
+          );
+        } else {
+          sourceList.append(clickedItem);
+          event.currentTarget.setAttribute("data-action", "add");
+          event.currentTarget.setAttribute(
+            "src",
+            "../tasks/img/right-arrow.svg"
+          );
+        }
+      }
+
+      window.onload = function () {
+        const allImages = document.querySelectorAll(".image");
+
+        for (let i = 0; i < allImages.length; i++) {
+          allImages[i].addEventListener("click", togglePlayer);
+        }
+      };
+    </script>
+  </body>
+</html>

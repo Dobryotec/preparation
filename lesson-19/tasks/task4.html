@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Task 4</title>
+  </head>
+  <body>
+    <h1>Task 4</h1>
+    <p>
+      Дано 3 таблиці розмірності 3*3 з випадковими числами. Якщо відбувається
+      клік на якійсь із клітинок, то до відповідної таблиці додається червона
+      рамка (спробуйте додати можливість відображення кількості кліків біля
+      назви таблиці з використанням відповідно доданого для цього атрибута).
+    </p>
+    <style>
+      table {
+        border-collapse: collapse;
+        width: 250px;
+        border: 1px solid #ccc;
+        margin-bottom: 50px;
+      }
+
+      td {
+        border: 1px solid #ccc;
+        padding: 8px;
+        text-align: center;
+      }
+
+      tr:nth-child(odd) td {
+        background-color: #f7f7f7;
+      }
+
+      tr:nth-child(even) td {
+        background-color: #ffffff;
+      }
+
+      .red-border {
+        border: 10px solid red;
+      }
+    </style>
+
+    <script>
+      function createTable(numberTable, numberRows, numberColums) {
+        for (k = 0; k < numberTable; k++) {
+          const table = document.createElement("table");
+          table.classList.add(`table-${k + 1}`);
+          table.setAttribute("data-clicks", 0);
+
+          const caption = document.createElement("caption");
+          caption.textContent = `Table - ${k + 1} (0 clicks)`;
+          table.appendChild(caption);
+
+          document.body.append(table);
+          for (let i = 0; i < numberRows; i++) {
+            const tr = document.createElement("tr");
+            table.append(tr);
+
+            for (let j = 0; j < numberColums; j++) {
+              const td = document.createElement("td");
+              const randomNumber = 1 + Math.floor(Math.random() * (10 - 1 + 1));
+              td.textContent = randomNumber;
+              tr.append(td);
+            }
+          }
+        }
+      }
+
+      function updateColorAndClicks(index) {
+        const tables = document.getElementsByTagName("table");
+        tables[index].classList.toggle("red-border");
+        const clicks = parseInt(tables[index].getAttribute("data-clicks")) + 1;
+        tables[index].setAttribute("data-clicks", clicks);
+
+        const caption = tables[index].querySelector("caption");
+        caption.textContent = `Table - ${index + 1} (${clicks} clicks)`;
+      }
+
+      window.onload = function () {
+        const tables = document.getElementsByTagName("table");
+
+        for (let i = 0; i < tables.length; i++) {
+          tables[i].onclick = () => updateColorAndClicks(i);
+        }
+      };
+
+      createTable(3, 3, 3);
+    </script>
+  </body>
+</html>
