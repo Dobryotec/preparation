@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Task 1</title>
+    <style>
+      body {
+        margin: 0;
+        overflow: hidden;
+      }
+      .star {
+        position: absolute;
+        width: 5px;
+        height: 5px;
+        opacity: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Task 1</h1>
+    <p>
+      Сяючі зорі. Вказана кількість зірочок повинна з’являтися у випадковій
+      частині екрану. Кожна зірка (це екземпляр класу Star) з певним кроком і
+      інтервалом збільшується від мінімального до максимального розміру. Як
+      тільки досягнути максимального розміру зірочка повинна з’являтися у іншій
+      випадковій позиції.
+    </p>
+    <script>
+      class Star {
+        constructor() {
+          this.element = document.createElement("img");
+          this.element.classList.add("star");
+          this.element.src = "../img/star.svg";
+          document.body.append(this.element);
+
+          this.resetStar();
+          this.animateStar();
+        }
+
+        resetStar() {
+          const windowWidth = window.innerWidth;
+          const windowHeight = window.innerHeight;
+
+          this.element.style.left = `${Math.random() * windowWidth}px`;
+          this.element.style.top = `${Math.random() * windowHeight}px`;
+          this.element.style.opacity = "0";
+          this.element.style.transition = "none";
+        }
+
+        animateStar() {
+          const minSize = 5;
+          const maxSize = 20;
+          const minDelay = 1000;
+          const maxDelay = 3000;
+
+          this.element.style.transition =
+            "width 0.5s, height 0.5s, opacity 0.5s";
+
+          const size =
+            minSize + Math.floor(Math.random() * (maxSize - minSize + 1));
+          const delay =
+            minDelay + Math.floor(Math.random() * (maxDelay - minDelay + 1));
+
+          this.element.style.width = `${size}px`;
+          this.element.style.height = `${size}px`;
+          this.element.style.opacity = "1";
+
+          setTimeout(() => {
+            this.resetStar();
+            this.animateStar();
+          }, delay);
+        }
+      }
+
+      const createStars = (numberStars) => {
+        for (let i = 0; i < numberStars; i++) {
+          new Star();
+        }
+      };
+
+      window.onload = function () {
+        createStars(100);
+      };
+    </script>
+  </body>
+</html>

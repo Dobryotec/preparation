@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Task 3</title>
+    <style>
+      .buttons-wrapper {
+        display: flex;
+        gap: 20px;
+        margin-bottom: 30px;
+      }
+
+      .inputs-wrapper {
+        display: flex;
+        gap: 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Task 3</h1>
+    <p>
+      На сторінці міститься певна кількість кнопок і інпутів. Підраховувати
+      загальну кількість кліків окремо на кнопках і окремо на інпутах.
+    </p>
+    <script>
+      const divCommon = document.createElement("div");
+      document.body.append(divCommon);
+      const divButtons = document.createElement("div");
+      divButtons.classList.add("buttons-wrapper");
+      const divInputs = document.createElement("div");
+      divInputs.classList.add("inputs-wrapper");
+      divCommon.append(divButtons, divInputs);
+
+      const clickCounts = {
+        buttons: 0,
+        inputs: 0,
+      };
+
+      const textElements = {
+        buttons: document.createElement("p"),
+        inputs: document.createElement("p"),
+      };
+
+      textElements.buttons.textContent = "Кількість кліків по кнопкам = 0";
+      textElements.inputs.textContent = "Кількість кліків по інпутам = 0";
+
+      divCommon.append(textElements.buttons, textElements.inputs);
+
+      function createButton(numberButtons, textButton) {
+        for (let i = 0; i < numberButtons; i++) {
+          const button = document.createElement("button");
+          button.textContent = textButton + `${i + 1}`;
+          divButtons.append(button);
+        }
+      }
+
+      function createInput(numberInput) {
+        for (let i = 0; i < numberInput; i++) {
+          const input = document.createElement("input");
+          divInputs.append(input);
+        }
+      }
+
+      createButton(4, "Кнопка");
+      createInput(3);
+
+      function onClick(e, elementType) {
+        switch (elementType) {
+          case "buttons":
+            let buttonClicks = parseInt(
+              textElements[elementType].textContent.split(" ")[5]
+            );
+            if (e.target.tagName === "BUTTON") {
+              buttonClicks += 1;
+            }
+            textElements[
+              elementType
+            ].textContent = `Кількість кліків по кнопкам = ${buttonClicks}`;
+            break;
+
+          case "inputs":
+            let inputClicks = parseInt(
+              textElements[elementType].textContent.split(" ")[5]
+            );
+            if (e.target.tagName === "INPUT") {
+              inputClicks += 1;
+            }
+            textElements[
+              elementType
+            ].textContent = `Кількість кліків по інпутам = ${inputClicks}`;
+            break;
+        }
+      }
+
+      divButtons.addEventListener("click", (e) => onClick(e, "buttons"));
+      divInputs.addEventListener("click", (e) => onClick(e, "inputs"));
+    </script>
+  </body>
+</html>

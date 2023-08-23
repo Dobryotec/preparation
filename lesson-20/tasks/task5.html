@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Task 5</title>
+    <style>
+      img {
+        width: 150px;
+      }
+      .product {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 20px;
+      }
+
+      .product-list {
+        display: flex;
+        flex-direction: column;
+        gap: 50px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Task 5</h1>
+    <p>
+      Дано перелік товарів у кошику. При зміні кількості одиниць товару
+      збільшувати загальну вартість. Створити клас Product, що призначений для
+      маніпуляцій товаром та клас ProductManager що оперує з усіма товарами
+      (через подію передвати ідентифікатор товару та операцію, що зроблена
+    </p>
+    <div class="product-list"></div>
+    <script>
+      class Product {
+        constructor({ id, title, price, image }) {
+          this.id = id;
+          this.title = title;
+          this.price = price;
+          this.image = image;
+          this.quantity = 1;
+        }
+
+        decrease() {
+          const span = this.div.querySelector("span");
+          if (this.quantity > 0) {
+            this.quantity -= 1;
+            span.textContent = this.quantity;
+          }
+          this.updatePrice();
+        }
+
+        increase() {
+          const span = this.div.querySelector("span");
+          this.quantity += 1;
+          span.textContent = this.quantity;
+
+          this.updatePrice();
+        }
+
+        onDelete() {
+          const deleteEvent = new CustomEvent("deleteProduct", {
+            detail: {
+              id: this.id,
+              priceOfDeleteProduct: this.price,
+            },
+          });
+
+          this.div.dispatchEvent(deleteEvent);
+          this.div.remove();
+        }
+
+        updatePrice() {
+          let totalPrice = this.price * this.quantity;
+
+          const spanPrice = this.div.querySelector(".spanPrice");
+          spanPrice.textContent = totalPrice + " грн";
+
+          const priceUpdateEvent = new CustomEvent("priceUpdated", {
+            detail: {
+              id: this.id,
+              totalPrice,
+              quantity: this.quantity,
+              price: this.price,
+            },
+          });
+          this.div.dispatchEvent(priceUpdateEvent);
+        }
+
+        render(containerSelector) {
+          const div = document.createElement("div");
+          div.classList.add("product");
+
+          const img = document.createElement("img");
+          img.src = this.image;
+          const p = document.createElement("p");
+          p.textContent = this.title;
+          const buttonDecrease = document.createElement("button");
+          buttonDecrease.textContent = "-";
+          const span = document.createElement("span");
+          span.classList.add("counter");
+          span.textContent = 1;
+          const buttonIncrease = document.createElement("button");
+          buttonIncrease.textContent = "+";
+          const p2 = document.createElement("p");
+          p2.classList.add("price");
+
+          p2.textContent = `До сплати: `;
+          const spanPrice = document.createElement("span");
+          spanPrice.classList.add("spanPrice");
+          spanPrice.textContent = this.price + " грн";
+          p2.append(spanPrice);
+
+          const buttonDelete = document.createElement("button");
+          buttonDelete.textContent = "x";
+
+          buttonDecrease.onclick = this.decrease.bind(this);
+          buttonIncrease.onclick = this.increase.bind(this);
+
+          this.div = div;
+
+          buttonDelete.onclick = this.onDelete.bind(this);
+
+          div.append(
+            img,
+            p,
+            buttonDecrease,
+            span,
+            buttonIncrease,
+            p2,
+            buttonDelete
+          );
+
+          if (containerSelector)
+            document.querySelector(containerSelector).append(div);
+        }
+      }
+
+      class ProductManager {
+        constructor(productList) {
+          this.productList = productList;
+          this.products = {};
+          this.total = 0;
+        }
+
+        render(containerSelector) {
+          const productList = document.querySelector(containerSelector);
+
+          for (const product of this.productList) {
+            const productObj = new Product(product);
+
+            this.total += product.price;
+
+            this.products[product.id] = { ...productObj, quantity: 1 };
+
+            productObj.render(containerSelector);
+
+            const cartInstance = this;
+
+            productObj.div.addEventListener(
+              "priceUpdated",
+              ({ detail: { id, quantity } }) => {
+                const productId = id;
+                const newQuantity = quantity;
+                const prevQuantity = cartInstance.products[productId].quantity;
+                const quantityChange = newQuantity - prevQuantity;
+
+                cartInstance.products[productId].quantity = newQuantity;
+
+                cartInstance.total +=
+                  quantityChange * cartInstance.products[productId].price;
+
+                cartInstance.updateTotalDiv();
+              }
+            );
+
+            productObj.div.addEventListener(
+              "deleteProduct",
+              ({ detail: { id } }) => {
+                const productId = id;
+                const deletedProduct = cartInstance.products[productId];
+                cartInstance.total -=
+                  deletedProduct.quantity * deletedProduct.price;
+                cartInstance.updateTotalDiv();
+              }
+            );
+          }
+
+          const totalDiv = document.createElement("div");
+          totalDiv.classList.add("totalDiv");
+          productList.append(totalDiv);
+          this.updateTotalDiv();
+        }
+
+        updateTotalDiv() {
+          const totalDiv = document.querySelector(".totalDiv");
+          totalDiv.textContent = `Загалом до оплати: ${this.total} грн`;
+        }
+      }
+
+      const productList = [
+        {
+          id: 1,
+          title: "Mouse",
+          price: 700,
+          image:
+            "https://content2.rozetka.com.ua/goods/images/big/293450039.jpg",
+        },
+        {
+          id: 2,
+          title: "Keyboard",
+          price: 4000,
+          image:
+            "https://content.rozetka.com.ua/goods/images/big/290478037.jpg",
+        },
+        {
+          id: 3,
+          title: "Laptop",
+          price: 40000,
+          image:
+            "https://content.rozetka.com.ua/goods/images/big/342994350.jpg",
+        },
+      ];
+
+      window.onload = function () {
+        const cart = new ProductManager(productList);
+        cart.render(".product-list");
+      };
+    </script>
+  </body>
+</html>

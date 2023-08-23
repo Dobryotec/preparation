@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Task 2</title>
+    <style>
+      form {
+        display: flex;
+        flex-direction: column;
+        width: 170px;
+        gap: 10px;
+      }
+
+      .wrapper-input {
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Task 2</h1>
+    <p>
+      На формі вводять 7 числових значень (вік, зріст, вага, заробітна плата,
+      стаж, номер відділу, порядковий номер). Додати подію обробки події click
+      на форму і якщо клік на внутрішньому input, то автоматично замінювати
+      значення його на 0. Використати делегування
+    </p>
+    <script>
+      const form = document.createElement("form");
+      document.body.append(form);
+
+      const namesInput = [
+        "Age",
+        "Height",
+        "Weight",
+        "Salary",
+        "Experience",
+        "Department number",
+        "Sequence number",
+      ];
+
+      function createInput(numberInputs, namesInput) {
+        for (let i = 0; i < numberInputs; i++) {
+          const div = document.createElement("div");
+          div.classList.add("wrapper-input");
+          const label = document.createElement("label");
+          label.textContent = namesInput[i];
+          const input = document.createElement("input");
+          div.append(label, input);
+          form.append(div);
+        }
+      }
+
+      createInput(7, namesInput);
+
+      function onFormClick(e) {
+        if (e.target.tagName === "INPUT") {
+          e.target.value = 0;
+        }
+      }
+
+      form.addEventListener("click", onFormClick);
+    </script>
+  </body>
+</html>
