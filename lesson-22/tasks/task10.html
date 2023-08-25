@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Task 10</title>
+  </head>
+  <body>
+    <h1>Task 10</h1>
+    <p>
+      Сформувати масив з 1000 елементів від 1 до 800. Порівняти час сортування
+      бульбашкою і вставкою.
+    </p>
+    <script>
+      const min = 1;
+      const max = 800;
+
+      function getRandomArray(min, max) {
+        let array = [];
+
+        for (let i = 0; i < 1000; i++) {
+          const randomNumber =
+            min + Math.floor(Math.random() * (max - min + 1));
+
+          array.push(randomNumber);
+        }
+
+        return array;
+      }
+
+      const array = getRandomArray(min, max);
+      const copyArray = [...getRandomArray(min, max)];
+      const copySecondArray = [...getRandomArray(min, max)];
+
+      function bubbleSort(copyArray) {
+        let isSwapped;
+        const lastIndex = copyArray.length - 1;
+
+        do {
+          isSwapped = false;
+          for (let i = 0; i < lastIndex; i++) {
+            if (copyArray[i] > copyArray[i + 1]) {
+              const temp = copyArray[i];
+              copyArray[i] = copyArray[i + 1];
+              copyArray[i + 1] = temp;
+              isSwapped = true;
+            }
+          }
+        } while (isSwapped);
+
+        return copyArray;
+      }
+
+      function insertionSort(copySecondArray) {
+        for (let i = 1; i < copySecondArray.length; i++) {
+          let currentNumber = copySecondArray[i];
+          let j = i - 1;
+          while (j >= 0 && copySecondArray[j] > currentNumber) {
+            copySecondArray[j + 1] = copySecondArray[j];
+            j = j - 1;
+          }
+          copySecondArray[j + 1] = currentNumber;
+        }
+
+        return copySecondArray;
+      }
+
+      const startBubbleSort = new Date();
+      bubbleSort(copyArray);
+      const endBubbleSort = new Date();
+      const timeBubbbleSort = endBubbleSort - startBubbleSort;
+      document.write(
+        `Час сортування бульбашкою = ${timeBubbbleSort} мілісекунд <br>`
+      );
+
+      const startInsertionSort = new Date();
+      insertionSort(copySecondArray);
+      const endInsertionSort = new Date();
+      const timeInsertionSort = endInsertionSort - startInsertionSort;
+      document.write(
+        `Час сортування вставкою = ${timeInsertionSort} мілісекунд`
+      );
+    </script>
+  </body>
+</html>

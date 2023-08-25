@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Task 3</title>
+  </head>
+  <body>
+    <h1>Task 3</h1>
+    <p>Визначити поточну пору року</p>
+    <script>
+      const nowDate = new Date();
+      const month = nowDate.getMonth();
+
+      function getSeason(month) {
+        let result;
+
+        switch (month) {
+          case 0:
+          case 1:
+          case 2:
+            result = "winter";
+            break;
+
+          case 3:
+          case 4:
+          case 5:
+            result = "spring";
+            break;
+
+          case 6:
+          case 7:
+          case 8:
+            result = "summer";
+            break;
+
+          default:
+            result = "autumn";
+        }
+
+        return result;
+      }
+
+      function createElement(month) {
+        const div = document.createElement("div");
+        div.textContent = ` Поточна пора року = ${getSeason(month)}`;
+
+        document.body.append(div);
+      }
+
+      createElement(month);
+    </script>
+  </body>
+</html>

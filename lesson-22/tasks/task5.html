@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Task 5</title>
+  </head>
+  <body>
+    <h1>Task 5</h1>
+    <p>
+      Користувач вводить дату народження. Визначити, скільки йому повних років.
+    </p>
+    <script>
+      const userBirthday = prompt(
+        "Введыть, будь ласка, дату вашого народження?",
+        "1996-10-29"
+      );
+
+      const nowDate = new Date();
+      const millisecondsInYear = 1000 * 60 * 60 * 24 * 365.25;
+
+      function getFullYearAge(userBirthday, millisecondsInYear, nowDate) {
+        const userBirthdayMilliseconds = new Date(userBirthday);
+
+        const millisecondsDiff = nowDate - userBirthdayMilliseconds;
+
+        return Math.floor(millisecondsDiff / millisecondsInYear);
+      }
+
+      function createElement(userBirthday, millisecondsInYear, nowDate) {
+        const div = document.createElement("div");
+        div.textContent =
+          getFullYearAge(userBirthday, millisecondsInYear, nowDate) + " років";
+        document.body.append(div);
+      }
+
+      createElement(userBirthday, millisecondsInYear, nowDate);
+    </script>
+  </body>
+</html>

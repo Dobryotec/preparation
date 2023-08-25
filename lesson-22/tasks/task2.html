@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Task 2</title>
+  </head>
+  <body>
+    <h1>Task 2</h1>
+    <p>Вивести дату у форматі “місяць – рік – вихідний/робочий”</p>
+    <script>
+      const nowDate = new Date();
+      const month = nowDate.getMonth() + 1;
+      const year = nowDate.getFullYear();
+      const day = nowDate.getDay();
+
+      function getDate(day, month, year) {
+        let result;
+
+        switch (day) {
+          case 0:
+          case 6:
+            result = "Вихідний день";
+            break;
+
+          default:
+            result = "робочий день";
+        }
+
+        return `${month}-${year}-${result}`;
+      }
+
+      function createElement(day, month, year) {
+        const div = document.createElement("div");
+        div.textContent = `Сьогодні = ${getDate(day, month, year)}`;
+        document.body.append(div);
+      }
+
+      createElement(day, month, year);
+    </script>
+  </body>
+</html>
