@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Task 11</title>
+  </head>
+  <body>
+    <h1>Task 11</h1>
+    <p>
+      Визначити чи може бути рядок тексту номером банківської картки (приклад:
+      «4142-3433-2323-3434»). Знайти усі такі номери.
+    </p>
+    <script>
+      const numberCard = "4353-3453-3345-3454";
+
+      document.write(`Номер карти => ${numberCard} <br>`);
+
+      const regex = /\b\d{4}\-\d{4}\-\d{4}\-\d{4}\b/;
+
+      let message;
+
+      regex.test(numberCard)
+        ? (message = "Так, це може бути номером карти")
+        : (message = "Ні, це не може бути номером карти");
+
+      document.write(message);
+    </script>
+  </body>
+</html>

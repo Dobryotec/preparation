@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Task 15</title>
+  </head>
+  <body>
+    <h1>Task 15</h1>
+    <p>
+      Користувач вводить прізвище та ім’я в одному рядку через пробіл. Замінити
+      пробіл на дефіс.
+    </p>
+    <script>
+      const dataUser = prompt(
+        "Введіть, будь ласка, ім'я та прізвище",
+        "Петро Васильченко"
+      );
+
+      const regex = /\s/;
+
+      const normalizedDataUser = dataUser.trim().replace(regex, "-");
+      document.write(normalizedDataUser);
+    </script>
+  </body>
+</html>

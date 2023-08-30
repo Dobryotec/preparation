@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Task 1</title>
+  </head>
+  <body>
+    <h1>Task 1</h1>
+    <p>Створити клас Client</p>
+    <script>
+      class Client {
+        constructor(id, name, fullName, amountMoneyAccount) {
+          this.id = id;
+          this.name = name;
+          this.fullName = fullName;
+          this.amountMoneyAccount = amountMoneyAccount;
+        }
+
+        addMoney(money) {
+          if (money > 0) return (this.amountMoneyAccount += money);
+          else throw new Error("Не можна вводити від'ємні числа");
+        }
+
+        withdrawalMoney(money) {
+          if (this.amountMoneyAccount + this.creditLimitMoney >= money) {
+            return (this.amountMoneyAccount -= money);
+          } else throw new Error("Не вистачає коштів");
+        }
+
+        createElements() {
+          const idClient = document.createElement("p");
+          idClient.textContent = `ID клієнта: ${this.id}`;
+          const nameClient = document.createElement("p");
+          nameClient.textContent = `Ім'я: ${this.name}`;
+          const fullNameClient = document.createElement("p");
+          fullNameClient.textContent = `Прізвище: ${this.fullName}`;
+          const moneyAccount = document.createElement("p");
+          moneyAccount.textContent = `Сума коштів на рахунку: ${this.amountMoneyAccount} грн`;
+          moneyAccount.classList.add("amount");
+          const peniUseCreditMoney = document.createElement("p");
+          peniUseCreditMoney.textContent = `Сума за відсоток використання кредитних коштів: 0 грн`;
+          peniUseCreditMoney.classList.add("peni");
+          document.body.append(
+            idClient,
+            nameClient,
+            fullNameClient,
+            moneyAccount,
+            peniUseCreditMoney
+          );
+          const input = document.createElement("input");
+          input.classList.add("input");
+
+          const button = document.createElement("button");
+          button.textContent = "Зняти гроші";
+          button.classList.add("button");
+
+          const buttonAdd = document.createElement("button");
+          buttonAdd.classList.add("buttonAdd");
+          buttonAdd.textContent = "Покласти гроші";
+          document.body.append(input, button, buttonAdd);
+        }
+      }
+
+      class GoldenClient extends Client {
+        constructor(
+          id,
+          name,
+          fullName,
+          amountMoneyAccount,
+          creditLimitMoney,
+          procentUseCreditMoney
+        ) {
+          super(id, name, fullName, amountMoneyAccount);
+          this.creditLimitMoney = creditLimitMoney;
+          this.procentUseCreditMoney = procentUseCreditMoney;
+          this.peniUseCreditAmount = 0;
+        }
+
+        determinationPeniUseCreditMoney() {
+          const peniUseCreditMoney = document.querySelector(".peni");
+          if (this.amountMoneyAccount < 0) {
+            const penaltyAmount = Math.abs(
+              this.amountMoneyAccount * this.procentUseCreditMoney
+            );
+
+            peniUseCreditMoney.textContent = `Сума за відсоток використання кредитних коштів: ${penaltyAmount} грн`;
+            this.peniUseCreditAmount = penaltyAmount;
+
+            return penaltyAmount;
+          } else {
+            this.peniUseCreditAmount = 0;
+            peniUseCreditMoney.textContent = `Сума за відсоток використання кредитних коштів: ${this.peniUseCreditMoney} грн`;
+          }
+        }
+
+        render() {
+          this.createElements();
+          const moneyAccount = document.querySelector(".amount");
+          const button = document.querySelector(".button");
+          const buttonAdd = document.querySelector(".buttonAdd");
+          const input = document.querySelector(".input");
+          const peniUseCreditMoney = document.querySelector(".peni");
+
+          const handleTransaction = (action) => {
+            const inputValue = parseInt(input.value);
+            if (!isNaN(inputValue)) {
+              if (action === "withdraw") {
+                this.amountMoneyAccount = this.withdrawalMoney(inputValue);
+              } else if (action === "add") {
+                this.amountMoneyAccount = this.addMoney(inputValue);
+              }
+              moneyAccount.textContent = `Сума коштів на рахунку: ${this.amountMoneyAccount} грн`;
+              this.determinationPeniUseCreditMoney();
+              peniUseCreditMoney.textContent = `Сума за відсоток використання кредитних коштів: ${this.peniUseCreditAmount} грн`;
+            }
+          };
+
+          button.addEventListener("click", () => {
+            handleTransaction("withdraw");
+          });
+
+          buttonAdd.addEventListener("click", () => {
+            handleTransaction("add");
+          });
+        }
+      }
+
+      let client = new GoldenClient(10, "Peter", "Parker", 0, 500, 0.05);
+
+      client.render();
+    </script>
+  </body>
+</html>

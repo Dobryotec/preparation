@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Task 9</title>
+  </head>
+  <body>
+    <h1>Task 9</h1>
+    <p>
+      Дано рядок тексту. Перевірити, чи містить він дату у форматі dd.mm.yyyy
+      (dd- день, mm- місяць, yyyy- рік).
+    </p>
+    <script>
+      const text = "Сьогоднішня дата => 30.08.2023";
+      document.write(`${text} <br>`);
+
+      const regex = /\b\d{2}\.\d{2}\.\d{4}/;
+
+      regex.test(text)
+        ? document.write("Містить")
+        : document.write("Не містить");
+    </script>
+  </body>
+</html>

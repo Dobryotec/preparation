@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Task 10</title>
+  </head>
+  <body>
+    <h1>Task 10</h1>
+    <p>Дано рядок тексту. Підрахувати кількість двоцифрових чисел у рядку.</p>
+    <script>
+      const text =
+        "I have 200 dollars, I want to buy 5 chairs, 10 plums, 15 apples and 20 peaches";
+
+      document.write(text);
+
+      const regex = /\b\d{2}\b/g;
+
+      const result = text.match(regex);
+
+      const numberTwoDigitNumbers = result.length;
+
+      document.write(
+        `<br> Кількість двоцифрович чисел => ${numberTwoDigitNumbers}`
+      );
+    </script>
+  </body>
+</html>

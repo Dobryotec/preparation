@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Task 12</title>
+  </head>
+  <body>
+    <h1>Task 12</h1>
+    <p>Дано адресу сайту. Визначити, чи є він урядовим (містить домен “gov”)</p>
+    <script>
+      const site = prompt("Введіть, будь ласка, сайт", "https://design.gov.ua");
+
+      const regex = /\.gov/;
+
+      let result;
+
+      regex.test(site)
+        ? (result = "Сайт урядовий")
+        : (result = "Сайт неурядовий");
+
+      document.write(result);
+    </script>
+  </body>
+</html>

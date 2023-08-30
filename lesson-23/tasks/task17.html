@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Task 17</title>
+  </head>
+  <body>
+    <h1>Task 17</h1>
+    <p>
+      Користувач вводить день (номер дня (0-6) або
+      «sun,mon,tue,wed,thu,fri,sat»). Визначити, чи є це день вихідним
+    </p>
+    <script>
+      let userDate = prompt(
+        "Введіть, будь ласка, день тижня(в форматі від 0-6 або повністю назву дня на англійській))"
+      );
+
+      const regex = /[1-5]|(monday|tuesday|wednesday|thursday|friday)/;
+
+      if (userDate) {
+        regex.test(userDate.toLowerCase())
+          ? document.write("Робочий день")
+          : document.write("Вихідний");
+      }
+    </script>
+  </body>
+</html>

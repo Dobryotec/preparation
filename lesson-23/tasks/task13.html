@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Task 13</title>
+  </head>
+  <body>
+    <h1>Task 13</h1>
+    <p>Вибрати усі роки після 2021 року з отриманого повідомлення</p>
+    <script>
+      const message =
+        "Треба вибрати усі роки після 2021, тобто це може бути 2040 рік, або 2035, або 2055, але не 2008 та не 2000";
+
+      document.write(message);
+
+      const regex = /\b\d{4}\b/g;
+
+      const result = message.match(regex);
+
+      const filterYears = result.filter((year) => year > 2021);
+
+      document.write(`<br> Роки які після 2021 => ${filterYears}`);
+    </script>
+  </body>
+</html>
